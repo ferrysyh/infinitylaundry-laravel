@@ -2,6 +2,10 @@
 
 @section('title', 'INFINITY Laundry')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}" />
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-8" id="kiri">

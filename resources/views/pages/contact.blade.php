@@ -2,6 +2,10 @@
 
 @section('title', 'Contact - INFINITY Laundry')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}" />
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row justify-content-between mt-5" id="kontak">

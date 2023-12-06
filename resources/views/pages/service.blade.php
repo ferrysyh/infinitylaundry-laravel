@@ -2,6 +2,10 @@
 
 @section('title', 'Service - INFINITY Laundry')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}" />
+@endsection
+
 @section('content')
     <div class="container">
         <h2 class="mt-4 mb-4" style="color: #0084F8;"><b>LAYANAN KAMI</b></h2>
