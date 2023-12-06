@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +11,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
+
 <body>
+    {{-- <?php include('../component/navbar.php'); ?> --}}
+
     <nav class="navbar navbar-expand-lg sticky-top" id="navbar">
         <div class="container">
             <a class="navbar-brand text-white" href="{{ url('/') }}">
@@ -31,46 +35,33 @@
             </div>
         </div>
     </nav>
-    <div class="row">
-        <div class="col-md-8" id="kiri">
-            <div class="container ms-4">
-                <h2><b>MENCUCI PAKAIAN DENGAN CINTA<br>DAN KEPEDULIAN</b></h2>
-                <p>Kami Merubah Pengalaman Anda Menjadi Lebih Praktis, Efisien, dan Penuh Kepercayaan.</p>
-            </div>
-        </div>
-        <div class="col-md-4" id="kanan">
-            <div class="container d-flex flex-column justify-content-center align-items-center text-white">
-                <div class="row mb-5">
-                    <div class="col-md-12">
-                        <h1>Selamat Datang</h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <button type="button" class="btn ps-5 pe-5 text-white" id="tombol-masuk">Masuk</button>
-                        <button type="button" class="btn ps-5 pe-5 text-white" id="tombol-daftar">Daftar</button>
-                    </div>
-                </div>
-                <footer class="container-fluid text-center" id="footer">
-                    <div class="row">
-                        <div class="col-md-12 mt-4">
-                            <p>&copy; INFINITY Team</p>
-                        </div>
-                    </div>
-                </footer>
+
+    <div class="container">
+        <h2 class="mt-4 mb-4" style="color: #0084F8;"><b>TENTANG KAMI</b></h2>
+        <div class="row ps-5 pe-5">
+            <div class="col-md-12">
+                <p>Selamat datang di INFINITY Laundry, layanan laundry yang melampaui batasan industri konvensional. Kami memahami bahwa dalam kehidupan yang semakin sibuk, mencuci pakaian menjadi tugas yang memakan waktu. Itulah mengapa kami hadir dengan solusi inovatif yang mengatasi masalah umum dalam industri laundry.</p>
+                <br>
+                <p>Di INFINITY Laundry, kami memiliki visi dan misi yang kuat:</p>
+                <p><b>Visi:</b> Mengubah pengalaman pelanggan dalam mencuci pakaian, menjadikannya lebih praktis dan efisien.</p>
+                <p><b>Misi:</b></p>
+                <ol>
+                    <li>Menyediakan layanan laundry yang tidak hanya membersihkan pakaian tetapi juga memberikan kepercayaan kepada pelanggan.</li>
+                    <li>Mencegah kesalahan-kesalahan manusia yang umumnya terjadi dalam industri laundry konvensional, seperti pakaian yang hilang atau tertukar.</li>
+                    <li>Menyediakan akses pelanggan ke status pakaian mereka secara real-time.</li>
+                    <li>Membuat proses laundry lebih aman dan efisien.</li>
+                </ol>
+                <p>Di INFINITY Laundry, kami berkomitmen untuk memberikan layanan laundry yang lebih dari sekadar mencuci pakaian. Kami hadir untuk mengubah pengalaman Anda dalam merawat pakaian Anda, memberikan kepercayaan, dan menjaga integritas layanan laundry. Kami bangga menjadi bagian dari inovasi dalam industri laundry. Bersama-sama, mari kita menciptakan masa depan yang lebih bersih dan lebih nyaman. Terima kasih atas dukungan Anda.</p>
             </div>
         </div>
     </div>
 
-    {{-- <?php include('component/loginform.php'); ?> --}}
-    {{-- <?php include('component/registform.php'); ?> --}}
-
-    <script src="src/js/index.js"></script>
-    <script src="src/js/alert.js"></script>
+    <script src="./src/js/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </body>
+
 </html>
