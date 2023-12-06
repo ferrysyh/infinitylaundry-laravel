@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('title', 'About - INFINITY Laundry')
+@section('title', 'Service - INFINITY Laundry')
 
 @section('content')
     <div class="container">
