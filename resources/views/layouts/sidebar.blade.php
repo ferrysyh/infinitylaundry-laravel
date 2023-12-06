@@ -2,16 +2,16 @@
     <div class="position-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" href="../../customers/dashboard.php">Dashboard</a>
+                <a class="nav-link active" href="{{ url('/dashboard') }}">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../../customers/side/riwayat.html">Riwayat Pesanan</a>
+                <a class="nav-link" href="{{ url('/riwayat') }}">Riwayat Pesanan</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../../customers/side/laporan.html">Laporan</a>
+                <a class="nav-link" href="{{ url('/laporan') }}">Laporan</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../../customers/side/faq.html">Bantuan</a>
+                <a class="nav-link" href="{{ url('/faq') }}">Bantuan</a>
             </li>
         </ul>
     </div>

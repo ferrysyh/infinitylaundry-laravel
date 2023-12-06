@@ -37,3 +37,14 @@ Route::get('/order', function () {
     return view('pages.customers.order.laundry');
 });
 
+Route::get('/package', function () {
+    return view('pages.customers.order.package');
+});
+
+Route::get('/items', function () {
+    return view('pages.customers.order.items');
+});
+
+Route::get('/confirm', function () {
+    return view('pages.customers.order.confirm');
+});

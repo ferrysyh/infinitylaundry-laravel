@@ -19,7 +19,7 @@
                     {{-- <h2 style="color: #0084F8;">Selamat Datang,<br> <?php echo $name; ?></h2> --}}
                 </div>
                 <div class="col-md-6" style="display: flex; justify-content: flex-end; align-items: center;">
-                    <a href="order/laundry.php" class="btn btn-success">+ Buat Pesanan</a>
+                    <a href="{{ url('/order') }}" class="btn btn-success">+ Buat Pesanan</a>
                 </div>
                 <div class="row mt-4" style="display: flex; align-items: stretch;">
                     <div class="col-md-6">
@@ -53,7 +53,7 @@
                     <div class="col-md-2">
                         <div class="card" style="height: 100%;">
                             <div class="card-body">
-                                <a href="balance/topup.html" class="btn btn-white" style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <a href="#" class="btn btn-white" style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                                     <img src="{{ asset('img/isiSaldo.png') }}" alt="Isi Saldo" style="max-width: 30px; max-height: 50px;">
                                     <span>Isi Saldo</span>
                                 </a>
