@@ -28,3 +28,12 @@ Route::get('/contact', function () {
 Route::get('/service', function () {
     return view('pages.service');
 });
+
+Route::get('/dashboard', function () {
+    return view('pages.customers.dashboard');
+});
+
+Route::get('/order', function () {
+    return view('pages.customers.order.laundry');
+});
+
