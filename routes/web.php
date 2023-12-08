@@ -36,9 +36,15 @@ Route::get('/service', function () {
     return view('pages.service');
 });
 
-Route::group(['middleware' => ['auth', 'checkrole:owner,customer']], function() {
+Route::group(['middleware' => ['auth', 'checkrole:customer']], function() {
     Route::get('/dashboard', function () {
         return view('pages.customers.dashboard');
+    });
+});
+
+Route::group(['middleware' => ['auth', 'checkrole:owner']], function() {
+    Route::get('/dashboard', function () {
+        return view('pages.owner.dashboard');
     });
 });
 
