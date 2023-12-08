@@ -27,6 +27,7 @@ class LoginController extends Controller
             'name' => $request->name,
             'role' => $request->role,
             'balance' => 0,
+            'level' => 'Silver',
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'remember_token' => Str::random(60),

@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             'name' => 'Customer Administrator',
             'role' => 'customer',
             'balance' => 1000000,
+            'level' => 'Administrator',
             'email' => 'custadmin@admin.com',
             'password' => bcrypt('custadmin'),
             'remember_token' => Str::random(60),

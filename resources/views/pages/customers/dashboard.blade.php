@@ -31,8 +31,7 @@
                                     </div>
                                     <div class="col-5">
                                         <h5 class="card-title">Level Member</h5>
-                                        <h4 class="card-text">Platinum</h4>
-                                        {{-- <h4 class="card-text"><?php echo $level_member; ?></h4> --}}
+                                        <h4 class="card-text">{{ auth()->user()->level }}</h4>
                                     </div>
                                 </div>
                             </div>
