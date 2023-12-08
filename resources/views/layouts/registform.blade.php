@@ -3,24 +3,21 @@
         <span class="close" id="close-register-popup">&times;</span>
         <form method="post" id="register-form" action="validator/register.php">
             <div class="form-group">
-                <label for="name">Nama:</label>
-                <input type="text" id="name" name="name" required>
+                <label class="form-label" for="name">Nama:</label>
+                <input class="form-control" type="text" id="name" name="name" required>
             </div>
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <label class="form-label" for="email">Email:</label>
+                <input class="form-control" type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
+                <label class="form-label" for="password">Password:</label>
+                <input class="form-control" type="password" id="password" name="password" required>
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <label for="role">Daftar sebagai:</label>
-                <select id="role" name="role">
+                <label class="form-label" for="role">Daftar sebagai:</label>
+                <select class="form-control" id="role" name="role" required>
+                    <option value="" disabled selected>--Select--</option>
                     <option value="customer">Customer</option>
                     <option value="owner">Owner</option>
                 </select>
