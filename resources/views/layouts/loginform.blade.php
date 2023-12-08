@@ -1,7 +1,7 @@
 <div id="login-popup" class="popup">
     <div class="popup-content">
         <span class="close" id="close-login-popup">&times;</span>
-        <form method="post" id="login-form" action="{{ route('postlogin') }}">
+        <form method="post" id="login-form" action="postLogin">
             @csrf
             <div class="form-group">
                 <label for="email">Email:</label>

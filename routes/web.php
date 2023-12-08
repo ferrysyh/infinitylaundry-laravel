@@ -18,9 +18,9 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::post('/postLogin', [LoginController::class, 'postLogin'])->name('postlogin');
+Route::post('/postLogin', [LoginController::class, 'postLogin']);
 
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::get('/about', function () {
     return view('pages.about');
