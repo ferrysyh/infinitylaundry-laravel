@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 
 Route::post('/postLogin', [LoginController::class, 'postLogin']);
 
@@ -34,9 +34,12 @@ Route::get('/service', function () {
     return view('pages.service');
 });
 
-Route::get('/dashboard', function () {
-    return view('pages.customers.dashboard');
+Route::group(['middleware' => ['auth', 'checkrole:owner,customer']], function() {
+    Route::get('/dashboard', function () {
+        return view('pages.customers.dashboard');
+    });
 });
+
 
 Route::get('/order', function () {
     return view('pages.customers.order.laundry');
