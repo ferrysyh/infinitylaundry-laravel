@@ -1,7 +1,8 @@
 <div id="register-popup" class="popup">
     <div class="popup-content">
         <span class="close" id="close-register-popup">&times;</span>
-        <form method="post" id="register-form" action="validator/register.php">
+        <form method="post" id="register-form" action="postRegist">
+            @csrf
             <div class="form-group">
                 <label class="form-label" for="name">Nama:</label>
                 <input class="form-control" type="text" id="name" name="name" required>
@@ -23,7 +24,7 @@
                 </select>
             </div>
             <div class="form-group text-end">
-                <button type="submit" name="register" class="btn btn-primary">Daftar</button>
+                <button type="submit" name="register" class="btn btn-primary mt-4">Daftar</button>
             </div>
         </form>
     </div>

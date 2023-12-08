@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
+Route::post('/postRegist', [LoginController::class, 'postRegist']);
+
 Route::post('/postLogin', [LoginController::class, 'postLogin']);
 
 Route::get('/logout', [LoginController::class, 'logout']);
@@ -39,7 +41,6 @@ Route::group(['middleware' => ['auth', 'checkrole:owner,customer']], function() 
         return view('pages.customers.dashboard');
     });
 });
-
 
 Route::get('/order', function () {
     return view('pages.customers.order.laundry');
