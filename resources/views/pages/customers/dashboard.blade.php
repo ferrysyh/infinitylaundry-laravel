@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('title', 'INFINITY Laundry')
+@section('title', 'Dashboard')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/customers.css') }}" />
@@ -15,8 +15,7 @@
             <div class="container mt-4">
                 <div class="row mt-4">
                 <div class="col-md-6">
-                    <h2 style="color: #0084F8;">Selamat Datang,<br> Ini Contoh</h2>
-                    {{-- <h2 style="color: #0084F8;">Selamat Datang,<br> <?php echo $name; ?></h2> --}}
+                    <h2 style="color: #0084F8;">Selamat Datang,<br> {{ auth()->user()->name }}</h2>
                 </div>
                 <div class="col-md-6" style="display: flex; justify-content: flex-end; align-items: center;">
                     <a href="{{ url('/order') }}" class="btn btn-success">+ Buat Pesanan</a>
@@ -26,12 +25,11 @@
                         <div class="card" style="height: 100%;">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-7">
                                         <h5 class="card-title">Saldo Anda</h5>
-                                        <h4 class="card-text">Rp 100.000</h4>
-                                        {{-- <h4 class="card-text">Rp <?php echo number_format($balance); ?></h4> --}}
+                                        <h4 class="card-text">Rp {{ number_format(auth()->user()->balance, 2, ',', '.') }}</h4>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-5">
                                         <h5 class="card-title">Level Member</h5>
                                         <h4 class="card-text">Platinum</h4>
                                         {{-- <h4 class="card-text"><?php echo $level_member; ?></h4> --}}
