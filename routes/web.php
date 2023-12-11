@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LaundryController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,7 +53,7 @@ Route::get('/order', function () {
 
 Route::get('/package', function () {
     return view('pages.customers.order.package');
-});
+})->name('package');
 
 Route::get('/items', function () {
     return view('pages.customers.order.items');
@@ -61,3 +62,5 @@ Route::get('/items', function () {
 Route::get('/confirm', function () {
     return view('pages.customers.order.confirm');
 });
+
+Route::resource('/order', LaundryController::class);
