@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Laundry;
+use App\Models\Package;
 use Illuminate\Http\Request;
 
 class LaundryController extends Controller
@@ -70,6 +71,17 @@ class LaundryController extends Controller
         if (!$selectedLaundry) {
             abort(404);
         }
+        $selectedLaundry->load('packages');
         return view('pages.customers.order.package', compact('selectedLaundry'));
+    }
+
+    public function showItems($laundryId, $packageId)
+    {
+        $selectedLaundry = Laundry::find($laundryId);
+        $selectedPackage = Package::find($packageId);
+        if (!$selectedLaundry || !$selectedPackage) {
+            abort(404); 
+        }
+        return view('pages.customers.order.items', compact('selectedLaundry', 'selectedPackage'));
     }
 }

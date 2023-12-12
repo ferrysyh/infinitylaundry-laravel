@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Laundry extends Model
+class Package extends Model
 {
     use HasFactory;
 
-    public function packages()
+    public function laundry()
     {
-        return $this->hasMany(Package::class);
+        return $this->belongsTo(Laundry::class);
     }
 }

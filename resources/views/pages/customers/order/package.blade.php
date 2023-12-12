@@ -40,36 +40,20 @@
 
                     <h3>Pilih Paket Laundry</h3>
                     <div class="row mt-4">
-                        <div class="col-md-4">
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <h5 class="card-title">Paket Reguler</h5>
-                                    <p class="card-text">Estimasi Durasi: 3-4 hari</p>
-                                    <p class="card-text">Harga: Rp 6.000/Kg</p>
-                                    <a href="items.php" class="btn btn-primary">Pilih Paket</a>
+                        @forelse ($selectedLaundry->packages as $package)
+                            <div class="col-md-4">
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $package->name }}</h5>
+                                        <p class="card-text">Estimasi Durasi: {{ $package->duration }} hari</p>
+                                        <p class="card-text">Harga: Rp {{ number_format($package->price, 0) }}/Kg</p>
+                                        <a href="{{ route('items', ['laundryId' => $selectedLaundry->id, 'packageId' => $package->id]) }}" class="btn btn-primary">Pilih Paket</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <h5 class="card-title">Paket Express</h5>
-                                    <p class="card-text">Estimasi Durasi: 2 hari</p>
-                                    <p class="card-text">Harga: Rp 8.000/Kg</p>
-                                    <a href="#" class="btn btn-primary">Pilih Paket</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <h5 class="card-title">Paket 1 Hari</h5>
-                                    <p class="card-text">Estimasi Durasi: 1 hari</p>
-                                    <p class="card-text">Harga: Rp 10.000/Kg</p>
-                                    <a href="#" class="btn btn-primary">Pilih Paket</a>
-                                </div>
-                            </div>
-                        </div>
+                        @empty
+                            <p>Tidak ada paket yang tersedia untuk laundry ini.</p>
+                        @endforelse
                     </div>
                 </div>
             </main>

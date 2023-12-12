@@ -55,9 +55,7 @@ Route::resource('/order', LaundryController::class);
 
 Route::get('/package/{id}', [LaundryController::class, 'showPackage'])->name('package');
 
-Route::get('/items', function () {
-    return view('pages.customers.order.items');
-});
+Route::get('/items/{laundryId}/{packageId}', [LaundryController::class, 'showItems'])->name('items');
 
 Route::get('/confirm', function () {
     return view('pages.customers.order.confirm');
