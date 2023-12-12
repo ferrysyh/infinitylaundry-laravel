@@ -51,9 +51,9 @@ Route::get('/order', function () {
     return view('pages.customers.order.laundry');
 });
 
-Route::get('/package', function () {
-    return view('pages.customers.order.package');
-})->name('package');
+Route::resource('/order', LaundryController::class);
+
+Route::get('/package/{id}', [LaundryController::class, 'showPackage'])->name('package');
 
 Route::get('/items', function () {
     return view('pages.customers.order.items');
@@ -62,5 +62,3 @@ Route::get('/items', function () {
 Route::get('/confirm', function () {
     return view('pages.customers.order.confirm');
 });
-
-Route::resource('/order', LaundryController::class);

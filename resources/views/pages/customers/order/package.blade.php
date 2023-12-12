@@ -13,7 +13,30 @@
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="container mt-4">
-                    {{-- <?php include('../../config/selectedlaundry.php'); ?> --}}
+                    <div class="card mb-4">
+                        <div class="row no-gutters">
+                            <div class="col-md-3">
+                                <div class="card-body">
+                                    <img src="{{ asset($selectedLaundry->img_path) }}" class="card-img" alt="{{ $selectedLaundry->name }}" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                    <h2 class="card-title">{{ $selectedLaundry->name }}</h2>
+                                    <p class="card-text">Alamat: {{ $selectedLaundry->address }}</p>
+                                    <p>Rating: 
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if ($i <= $selectedLaundry->rating)
+                                                <span class="text-warning">&#9733;</span>
+                                            @else
+                                                <span class="text-warning">&#9734;</span>
+                                            @endif
+                                        @endfor
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <h3>Pilih Paket Laundry</h3>
                     <div class="row mt-4">

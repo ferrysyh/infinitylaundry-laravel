@@ -13,7 +13,7 @@ class LaundryController extends Controller
     public function index()
     {
         $laundry = Laundry::get();
-        return view('/pages/customers/order/laundry', ['laundries' => $laundry]);
+        return view('pages.customers.order.laundry', ['laundries' => $laundry]);
     }
 
     /**
@@ -62,5 +62,14 @@ class LaundryController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function showPackage(Request $request, $id)
+    {
+        $selectedLaundry = Laundry::find($id);
+        if (!$selectedLaundry) {
+            abort(404);
+        }
+        return view('pages.customers.order.package', compact('selectedLaundry'));
     }
 }
