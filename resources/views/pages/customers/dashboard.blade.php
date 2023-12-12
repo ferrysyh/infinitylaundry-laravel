@@ -21,17 +21,21 @@
                     <a href="{{ url('/order') }}" class="btn btn-success">+ Buat Pesanan</a>
                 </div>
                 <div class="row mt-4" style="display: flex; align-items: stretch;">
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <div class="card" style="height: 100%;">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-7">
+                                    <div class="col-5">
                                         <h5 class="card-title">Saldo Anda</h5>
                                         <h4 class="card-text">Rp {{ number_format(auth()->user()->balance, 2, ',', '.') }}</h4>
                                     </div>
                                     <div class="col-5">
                                         <h5 class="card-title">Level Member</h5>
                                         <h4 class="card-text">{{ auth()->user()->level }}</h4>
+                                    </div>
+                                    <div class="col-2">
+                                        <h5 class="card-title">Poin</h5>
+                                        <h4 class="card-text">{{ auth()->user()->poin }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +61,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    {{-- <div class="col-md-2">
                         <div class="card" style="height: 100%;">
                             <div class="card-body">
                                 <a href="#" class="btn btn-white" style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
@@ -66,7 +70,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 
                 <div class="mt-5">

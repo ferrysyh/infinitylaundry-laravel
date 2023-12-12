@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'role' => 'customer',
             'balance' => 1000000,
             'level' => 'Administrator',
+            'poin' => '1000',
             'email' => 'custadmin@admin.com',
             'password' => bcrypt('custadmin'),
             'remember_token' => Str::random(60),
