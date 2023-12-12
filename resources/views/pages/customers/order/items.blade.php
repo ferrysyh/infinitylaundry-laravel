@@ -131,8 +131,8 @@
                             <div class="card-body">
                                 <h3>Item yang Dipilih</h3>
                                 <ul class="selected-items"></ul>
-                                <a href="confirm.php" class="btn btn-primary">Selesai</a>
-                            </div>
+                                <a href="confirm" class="btn btn-primary">Selesai</a>
+                            </div>    
                         </div>
                     </div>
                 </div>
