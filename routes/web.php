@@ -43,14 +43,13 @@ Route::group(['middleware' => ['auth']], function () {
             return view('pages.customers.dashboard');
         } elseif (auth()->user()->role === 'owner') {
             return view('pages.owner.dashboard');
-        } else {
-            return view('/');
         }
     });
-    
+
     Route::get('/order', function () {
         return view('pages.customers.order.laundry');
     });
+    
     Route::resource('/order', LaundryController::class);
 
     Route::get('/package/{id}', [LaundryController::class, 'showPackage'])->name('package');
