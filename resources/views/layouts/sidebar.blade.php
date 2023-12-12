@@ -4,6 +4,7 @@
             <li class="nav-item">
                 <a class="nav-link active" href="{{ url('/dashboard') }}">Dashboard</a>
             </li>
+            @auth
             @if (auth()->user()->role == 'customer')
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/riwayat') }}">Riwayat Pesanan</a>
@@ -14,6 +15,7 @@
                 <a class="nav-link" href="{{ url('/laporan') }}">Laporan</a>
             </li>
             @endif
+            @endauth
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/faq') }}">Bantuan</a>
             </li>

@@ -43,20 +43,24 @@ Route::group(['middleware' => ['auth']], function () {
             return view('pages.customers.dashboard');
         } elseif (auth()->user()->role === 'owner') {
             return view('pages.owner.dashboard');
+        } else {
+            return view('/');
         }
+    });
+    
+    Route::get('/order', function () {
+        return view('pages.customers.order.laundry');
+    });
+    Route::resource('/order', LaundryController::class);
+
+    Route::get('/package/{id}', [LaundryController::class, 'showPackage'])->name('package');
+
+    Route::get('/items/{laundryId}/{packageId}', [LaundryController::class, 'showItems'])->name('items');
+
+    Route::get('/confirm', function () {
+        return view('pages.customers.order.confirm');
     });
 });
 
-Route::get('/order', function () {
-    return view('pages.customers.order.laundry');
-});
 
-Route::resource('/order', LaundryController::class);
 
-Route::get('/package/{id}', [LaundryController::class, 'showPackage'])->name('package');
-
-Route::get('/items/{laundryId}/{packageId}', [LaundryController::class, 'showItems'])->name('items');
-
-Route::get('/confirm', function () {
-    return view('pages.customers.order.confirm');
-});
