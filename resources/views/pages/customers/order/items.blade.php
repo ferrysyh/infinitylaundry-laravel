@@ -128,12 +128,10 @@
                         </div>
                         
                         <div class="col-md-4">
-                            <div class="card mb-4" style="height: 160px">
-                                <div class="card-body">
-                                    <h3>Item yang Dipilih</h3>
-                                    <ul class="selected-items"></ul>
-                                    <a href="confirm.php" class="btn btn-primary">Selesai</a>
-                                </div>
+                            <div class="card-body">
+                                <h3>Item yang Dipilih</h3>
+                                <ul class="selected-items"></ul>
+                                <a href="confirm.php" class="btn btn-primary">Selesai</a>
                             </div>
                         </div>
                     </div>
