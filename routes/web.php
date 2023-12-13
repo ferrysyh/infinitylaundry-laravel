@@ -23,12 +23,8 @@ Route::post('/postRegist', [LoginController::class, 'postRegist']);
 
 Route::post('/postLogin', [LoginController::class, 'postLogin']);
 
-Route::get('/{any?}/logout', [LoginController::class, 'logout'])
-    ->where('any', '.*')
-    ->name('logout');
-
 Route::get('/logout', [LoginController::class, 'logout']);
-Route::get('/{any}/logout', [LoginController::class, 'logout'])
+Route::get('/{any?}/logout', [LoginController::class, 'logout'])
     ->where('any', '.*');
 
 Route::get('/about', function () {
@@ -66,6 +62,4 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/submit-order', [LaundryController::class, 'submitOrder'])->name('submit.order');
 });
-
-
 
