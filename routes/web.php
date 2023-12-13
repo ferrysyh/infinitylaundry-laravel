@@ -23,7 +23,13 @@ Route::post('/postRegist', [LoginController::class, 'postRegist']);
 
 Route::post('/postLogin', [LoginController::class, 'postLogin']);
 
+Route::get('/{any?}/logout', [LoginController::class, 'logout'])
+    ->where('any', '.*')
+    ->name('logout');
+
 Route::get('/logout', [LoginController::class, 'logout']);
+Route::get('/{any}/logout', [LoginController::class, 'logout'])
+    ->where('any', '.*');
 
 Route::get('/about', function () {
     return view('pages.about');
