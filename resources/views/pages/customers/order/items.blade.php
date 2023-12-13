@@ -129,9 +129,14 @@
                         
                         <div class="col-md-4">
                             <div class="card-body">
-                                <h3>Item yang Dipilih</h3>
-                                <ul class="selected-items"></ul>
-                                <a href="confirm" class="btn btn-primary">Selesai</a>
+                                <form method="post" action="{{ route('submit.order') }}">
+                                    @csrf
+                                    <h3>Item yang Dipilih</h3>
+                                    <ul class="selected-items"></ul>
+                                    <input type="hidden" name="laundry_id" value="{{ $selectedLaundry->id }}">
+                                    <input type="hidden" name="package_id" value="{{ $selectedPackage->id }}">
+                                    <button type="submit" class="btn btn-primary btn-submit">Selesai</button>
+                                </form>
                             </div>    
                         </div>
                     </div>
@@ -167,6 +172,23 @@
 
             $(document).on("click", ".btn-remove-item", function () {
                 $(this).closest("li").remove();
+            });
+
+            $(".btn-submit").click(function () {
+                // Loop through selected items and add them to the form data
+                $(".selected-items li").each(function () {
+                    var itemName = $(this).find("span").text().split(":")[0].trim();
+                    var itemQuantity = $(this).find("span").text().split(":")[1].trim();
+
+                    $("<input>").attr({
+                        type: "hidden",
+                        name: "selected_items[]",
+                        value: itemName + ":" + itemQuantity,
+                    }).appendTo("form");
+                });
+
+                // Submit the form
+                $("form").submit();
             });
         });
     </script>

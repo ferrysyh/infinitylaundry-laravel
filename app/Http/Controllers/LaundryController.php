@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Laundry;
+use App\Models\LaundryOrder;
 use App\Models\Package;
+use App\Models\SelectedLaundryItem;
 use Illuminate\Http\Request;
 
 class LaundryController extends Controller
@@ -83,5 +85,36 @@ class LaundryController extends Controller
             abort(404); 
         }
         return view('pages.customers.order.items', compact('selectedLaundry', 'selectedPackage'));
+    }
+
+    public function submitOrder(Request $request)
+    {
+        $request->validate([
+            'selected_items' => 'required|array',
+            'selected_items.*' => 'required|string',
+            // 'laundry_id' => 'required|exists:laundries,id',
+            // 'package_id' => 'required|exists:packages,id',
+            // 'selected_items' => 'required|array',
+            // 'selected_items.*.name' => 'required|string',
+            // 'selected_items.*.quantity' => 'required|integer|min:1',
+            // Add any other validation rules as needed
+        ]);
+    
+        $laundryOrder = new LaundryOrder();
+        $laundryOrder->laundry_id = $request->input('laundry_id');
+        $laundryOrder->package_id = $request->input('package_id');
+        $laundryOrder->statuspembayaran = 'Menunggu Pembayaran';
+        $laundryOrder->save();
+    
+        foreach ($request->input('selected_items') as $item) {
+            list($itemName, $itemQuantity) = explode(':', $item);
+            $selectedLaundryItem = new SelectedLaundryItem();
+            $selectedLaundryItem->laundry_order_id = $laundryOrder->id;
+            $selectedLaundryItem->name = $itemName;
+            $selectedLaundryItem->quantity = $itemQuantity;
+            $selectedLaundryItem->save();
+        }
+        
+        return redirect()->route('confirm', ['order_id' => $laundryOrder->id]);
     }
 }

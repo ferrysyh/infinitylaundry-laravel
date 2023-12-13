@@ -58,7 +58,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/confirm', function () {
         return view('pages.customers.order.confirm');
-    });
+    })->name('confirm');
+
+    Route::post('/submit-order', [LaundryController::class, 'submitOrder'])->name('submit.order');
 });
 
 
