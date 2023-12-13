@@ -92,12 +92,6 @@ class LaundryController extends Controller
         $request->validate([
             'selected_items' => 'required|array',
             'selected_items.*' => 'required|string',
-            // 'laundry_id' => 'required|exists:laundries,id',
-            // 'package_id' => 'required|exists:packages,id',
-            // 'selected_items' => 'required|array',
-            // 'selected_items.*.name' => 'required|string',
-            // 'selected_items.*.quantity' => 'required|integer|min:1',
-            // Add any other validation rules as needed
         ]);
     
         $laundryOrder = new LaundryOrder();
@@ -115,6 +109,49 @@ class LaundryController extends Controller
             $selectedLaundryItem->save();
         }
         
-        return redirect()->route('confirm', ['order_id' => $laundryOrder->id]);
+        return redirect()->route('confirm', [
+            'laundry_id' => $request->input('laundry_id'),
+            'package_id' => $request->input('package_id'),
+            'order_id' => $laundryOrder->id,
+        ]);
+    }
+
+    public function confirm($laundry_id, $package_id, $order_id) {
+        $selectedLaundry = Laundry::find($laundry_id);
+        $selectedPackage = Package::find($package_id);
+        $laundryOrder = LaundryOrder::find($order_id);
+
+        $totalWeight = $laundryOrder->selectedLaundryItems->sum('quantity');
+        $totalWeight = $this->calculateTotalWeight($laundryOrder->selectedLaundryItems);
+        $totalCost = $selectedPackage->price * $totalWeight;
+
+        return view('pages.customers.order.confirm', compact('selectedLaundry', 'selectedPackage', 'laundryOrder', 'totalWeight', 'totalCost'));
+    }
+
+    private function calculateTotalWeight($selectedItems)
+    {
+        $itemWeights = [
+            'Kemeja' => 0.5, 
+            'Kaos' => 0.3,
+            'Celana Panjang' => 0.7,
+            'Celana Pendek' => 0.5,
+            'Handuk' => 0.8,
+        ];
+
+        $defaultWeight = 1.0; 
+        $totalWeight = 0;
+
+        foreach ($selectedItems as $selectedItem) {
+            $itemName = $selectedItem->name;
+            $itemQuantity = $selectedItem->quantity;
+
+            if (isset($itemWeights[$itemName])) {
+                $totalWeight += $itemWeights[$itemName] * $itemQuantity;
+            } else {
+                $totalWeight += $defaultWeight * $itemQuantity;
+            }
+        }
+
+        return $totalWeight;
     }
 }

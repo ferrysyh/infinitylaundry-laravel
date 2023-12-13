@@ -56,9 +56,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/items/{laundryId}/{packageId}', [LaundryController::class, 'showItems'])->name('items');
 
-    Route::get('/confirm', function () {
-        return view('pages.customers.order.confirm');
-    })->name('confirm');
+    Route::get('/confirm/{laundry_id}/{package_id}/{order_id}', [LaundryController::class, 'confirm'])->name('confirm');
 
     Route::post('/submit-order', [LaundryController::class, 'submitOrder'])->name('submit.order');
 });
