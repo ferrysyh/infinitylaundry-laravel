@@ -13,4 +13,10 @@ class LaundryOrder extends Model
     {
         return $this->hasMany(SelectedLaundryItem::class);
     }
+
+    public function laundry()
+    {
+        return $this->belongTo(Laundry::class,'laundry_id');
+    }
+    
 }

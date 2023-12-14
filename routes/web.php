@@ -68,5 +68,13 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::get('/riwayat', [DashboardController::class, 'riwayat'])->name('riwayat');
+
+    Route::get('/faq_customers', function () {
+        return view('pages.customers.faq');
+    });
+
+    Route::get('/faq_owner', function () {
+        return view('pages.owner.faq');
+    });
 });
 
