@@ -62,5 +62,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/payment', function () {
         return view('pages.customers.order.laundry');
     });
+
+    Route::get('/riwayat', [DashboardController::class, 'riwayat'])->name('riwayat');
 });
 

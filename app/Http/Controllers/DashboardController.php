@@ -22,4 +22,19 @@ class DashboardController extends Controller
             return view('pages.owner.dashboard', ['transactionHistories' => $transactionHistories]);
         }
     }
+
+    public function riwayat(){
+        $userId = auth()->user()->id;
+
+        $transactionHistories = TransactionHistory::where('user_id', $userId)->get();
+        $transactionHistories = TransactionHistory::with('LaundryOrder')->where('user_id', $userId)->get();
+
+        $role = auth()->user()->role;
+
+        if ($role === 'customer') {
+            return view('pages.customers.order.riwayat', ['transactionHistories' => $transactionHistories]);
+        } elseif ($role === 'owner') {
+            return view('pages.owner.dashboard', ['transactionHistories' => $transactionHistories]);
+        }
+    }
 }
