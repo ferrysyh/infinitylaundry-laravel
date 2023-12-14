@@ -36,4 +36,5 @@ class TransactionHistory extends Model
     {
         return $this->belongsTo(LaundryOrder::class, 'order_id');
     }
+    
 }
