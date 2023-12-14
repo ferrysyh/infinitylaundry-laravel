@@ -28,9 +28,9 @@
                                 <tr>
                                     <td>{{ $history->order_id }}</td>
                                     <td>{{ $history->created_at->format('D, d M Y') }}</td>
-                                    <td>{{$history->statuspembayaran }}</td>
+                                    <td>{{ $history->statuspembayaran }}</td>
                                     <td><a href="" style="text-decoration: none">Details</a></td>
-                                    <td>{{$history->price }}</td>
+                                    <td>Rp {{ number_format($history->price, 2, ',', '.') }}</td>
                                 </tr>
                             @endforeach
                         </tr>
