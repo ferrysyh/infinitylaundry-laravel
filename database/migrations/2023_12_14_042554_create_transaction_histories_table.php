@@ -11,14 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('laundry_orders', function (Blueprint $table) {
+        Schema::create('transaction_histories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('laundry_id');
             $table->unsignedBigInteger('package_id');
+            $table->unsignedBigInteger('order_id');
+            $table->string('statuspembayaran')->default('Menunggu pembayaran');
             $table->timestamps();
 
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('laundry_id')->references('id')->on('laundries');
             $table->foreign('package_id')->references('id')->on('packages');
+            $table->foreign('order_id')->references('id')->on('laundry_orders');
         });
     }
 
@@ -27,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('laundry_orders');
+        Schema::dropIfExists('transaction_histories');
     }
 };

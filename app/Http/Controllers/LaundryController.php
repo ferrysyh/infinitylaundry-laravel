@@ -6,6 +6,7 @@ use App\Models\Laundry;
 use App\Models\LaundryOrder;
 use App\Models\Package;
 use App\Models\SelectedLaundryItem;
+use App\Models\TransactionHistory;
 use Illuminate\Http\Request;
 
 class LaundryController extends Controller
@@ -97,7 +98,6 @@ class LaundryController extends Controller
         $laundryOrder = new LaundryOrder();
         $laundryOrder->laundry_id = $request->input('laundry_id');
         $laundryOrder->package_id = $request->input('package_id');
-        $laundryOrder->statuspembayaran = 'Menunggu Pembayaran';
         $laundryOrder->save();
     
         foreach ($request->input('selected_items') as $item) {
@@ -153,5 +153,22 @@ class LaundryController extends Controller
         }
 
         return $totalWeight;
+    }
+
+    public function submitConfirmation(Request $request)
+    {
+        $userId = $request->input('user_id');
+        $laundryId = $request->input('laundry_id');
+        $packageId = $request->input('package_id');
+        $orderId = $request->input('order_id');
+
+        TransactionHistory::create([
+            'user_id' => $userId,
+            'laundry_id' => $laundryId,
+            'package_id' => $packageId,
+            'order_id' => $orderId,
+        ]);
+
+        return redirect()->route('payment');
     }
 }

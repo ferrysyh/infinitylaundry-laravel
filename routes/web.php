@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaundryController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -40,13 +41,7 @@ Route::get('/service', function () {
 });
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/dashboard', function () {
-        if (auth()->user()->role === 'customer') {
-            return view('pages.customers.dashboard');
-        } elseif (auth()->user()->role === 'owner') {
-            return view('pages.owner.dashboard');
-        }
-    });
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/order', function () {
         return view('pages.customers.order.laundry');
@@ -61,5 +56,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/confirm/{laundry_id}/{package_id}/{order_id}', [LaundryController::class, 'confirm'])->name('confirm');
 
     Route::post('/submit-order', [LaundryController::class, 'submitOrder'])->name('submit.order');
+
+    Route::post('/submit-confirmation', [LaundryController::class, 'submitConfirmation'])->name('submit.confirmation');
+
+    Route::get('/payment', function () {
+        return view('pages.customers.order.laundry');
+    });
 });
 

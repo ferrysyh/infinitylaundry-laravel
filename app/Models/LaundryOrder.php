@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LaundryOrder extends Model
 {
-    protected $fillable = ['laundry_id', 'package_id', 'statuspembayaran'];
+    protected $fillable = ['laundry_id', 'package_id'];
 
     public function selectedLaundryItems()
     {

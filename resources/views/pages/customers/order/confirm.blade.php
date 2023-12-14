@@ -82,7 +82,19 @@
                     <div class="row mt-4">
                         <div class="col-md-12">
                             <div class="card" style="height: 100%;">
-                                <a href="metodepembayaran" class="btn btn-primary">Konfirmasi</a>
+                                <form method="post" action="{{ route('submit.confirmation') }}">
+                                    @csrf
+                                    <!-- Include additional hidden input fields for the required data -->
+                                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                    <input type="hidden" name="laundry_id" value="{{ $selectedLaundry->id }}">
+                                    <input type="hidden" name="package_id" value="{{ $selectedPackage->id }}">
+                                    <input type="hidden" name="order_id" value="{{ $laundryOrder->id }}">
+                                    <!-- Add other required input fields -->
+                                
+                                    <!-- "Konfirmasi" button now submits the form -->
+                                    <button type="submit" class="btn btn-primary">Konfirmasi</button>
+                                </form>
+                                {{-- <a href="metodepembayaran" class="btn btn-primary">Konfirmasi</a> --}}
                             </div>
                         </div>
                     </div>

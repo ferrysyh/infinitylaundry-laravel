@@ -81,19 +81,18 @@
                                 <th>No. Pesanan</th>
                                 <th>Tanggal Pemesanan</th>
                                 <th>Status</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>12345</td>
-                                <td>2023-10-20</td>
-                                <td>Dalam Proses</td>
-                            </tr>
-                            <tr>
-                                <td>12346</td>
-                                <td>2023-10-18</td>
-                                <td>Bisa Dijemput</td>
-                            </tr>
+                            @foreach ($transactionHistories->where('statuspembayaran', '!=', 'Selesai') as $history)
+                                <tr>
+                                    <td>{{ $history->order_id }}</td>
+                                    <td>{{ $history->created_at->format('D, d M Y') }}</td>
+                                    <td>{{$history->statuspembayaran }}</td>
+                                    <td><a href="" style="text-decoration: none">Details</a></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
