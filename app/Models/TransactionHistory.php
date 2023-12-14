@@ -14,6 +14,7 @@ class TransactionHistory extends Model
         'package_id',
         'order_id',
         'statuspembayaran',
+        'price',
     ];
 
     public function user()

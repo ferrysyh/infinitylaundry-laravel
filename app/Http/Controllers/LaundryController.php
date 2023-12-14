@@ -161,12 +161,14 @@ class LaundryController extends Controller
         $laundryId = $request->input('laundry_id');
         $packageId = $request->input('package_id');
         $orderId = $request->input('order_id');
+        $price = $request->input('price');
 
         TransactionHistory::create([
             'user_id' => $userId,
             'laundry_id' => $laundryId,
             'package_id' => $packageId,
             'order_id' => $orderId,
+            'price' => $price,
         ]);
 
         return redirect()->route('payment');

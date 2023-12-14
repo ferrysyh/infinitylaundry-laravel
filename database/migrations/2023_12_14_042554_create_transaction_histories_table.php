@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('package_id');
             $table->unsignedBigInteger('order_id');
             $table->string('statuspembayaran')->default('Menunggu pembayaran');
+            $table->string('price')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
