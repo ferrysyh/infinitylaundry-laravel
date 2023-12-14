@@ -44,7 +44,7 @@
                     <div class="col-md-2">
                         <div class="card" style="height: 100%;">
                             <div class="card-body">
-                                <a href="#" class="btn btn-white" style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <a href="{{ url('/tariksaldo_customers') }}" class="btn btn-white" style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                                     <img src="{{ asset('img/tarikSaldo.png') }}" alt="Tarik Saldo" style="max-width: 30px; max-height: 50px;">
                                     <span style="white-space: nowrap;">Tarik Saldo</span>
                                 </a>
