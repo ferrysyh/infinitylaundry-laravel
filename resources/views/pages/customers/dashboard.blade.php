@@ -74,7 +74,7 @@
                 </div>
                 
                 <div class="mt-5">
-                    <h3>Riwayat Pemesanan</h3>
+                    <h3>Pemesanan Diproses</h3>
                     <table class="table">
                         <thead>
                             <tr>

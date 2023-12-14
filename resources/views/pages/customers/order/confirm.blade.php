@@ -89,6 +89,7 @@
                                     <input type="hidden" name="laundry_id" value="{{ $selectedLaundry->id }}">
                                     <input type="hidden" name="package_id" value="{{ $selectedPackage->id }}">
                                     <input type="hidden" name="order_id" value="{{ $laundryOrder->id }}">
+                                    <input type="hidden" name="price" value="{{ $totalCost }}">
                                     <!-- Add other required input fields -->
                                 
                                     <!-- "Konfirmasi" button now submits the form -->
