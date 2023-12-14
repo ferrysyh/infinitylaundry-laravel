@@ -19,7 +19,7 @@
                 <p class="mt-2 mb-0"><b>Zihni Nawfal Gusti F.<br>1303213071</b></p>
             </div>
             <div class="col-md-2 text-center d-flex flex-column align-items-center justify-content-center text-white" style="background-color: #58C2F1;">
-                <img src="" alt="" height="150px">
+                <img src="{{ asset("img/person/rizki.jpg") }}" alt="" height="150px">
                 <p class="mt-2 mb-0" style="white-space: nowrap;"><b>Rizki Rana Kusumah<br>1303210002</b></p>
             </div>
             <div class="col-md-2"></div>
