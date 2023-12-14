@@ -40,6 +40,10 @@ Route::get('/service', function () {
     return view('pages.service');
 });
 
+Route::get('/topup', function () {
+    return view('pages.customers.topup');
+});
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
