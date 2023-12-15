@@ -89,18 +89,6 @@
                                         <td><a href="" style="text-decoration: none">Details</a></td>
                                     </tr>
                                     @endforeach
-                                    
-                                </tbody>
-                                    <tr>
-                                        <td>12346</td>
-                                        <td>2023-10-18</td>
-                                        <td>Rp.24.000</td>
-                                        <td>
-                                            <input type="checkbox" class="checkmark">
-                                            <button class="delete-button">X</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
                             </table>
                         </div>
 

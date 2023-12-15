@@ -11,14 +11,18 @@ class DashboardController extends Controller
     {
         $userId = auth()->user()->id;
 
-        $transactionHistories = TransactionHistory::where('user_id', $userId)->get();
-        $transactionHistories = TransactionHistory::with('LaundryOrder')->where('user_id', $userId)->get();
+        // $transactionHistories = TransactionHistory::where('user_id', $userId)->get();
+        // $transactionHistories = TransactionHistory::with('LaundryOrder')->where('user_id', $userId)->get();
 
         $role = auth()->user()->role;
 
         if ($role === 'customer') {
+            $transactionHistories = TransactionHistory::where('user_id', $userId)->get();
+            $transactionHistories = TransactionHistory::with('LaundryOrder')->where('user_id', $userId)->get();
             return view('pages.customers.dashboard', ['transactionHistories' => $transactionHistories]);
         } elseif ($role === 'owner') {
+            $transactionHistories = TransactionHistory::where('user_id', $userId)->get();
+            $transactionHistories = TransactionHistory::with('LaundryOrder')->where('laundry_id', $userId)->get();
             return view('pages.owner.dashboard', ['transactionHistories' => $transactionHistories]);
         }
     }
