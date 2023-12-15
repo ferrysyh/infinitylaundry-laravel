@@ -1,12 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>ini payment</h1>
-</body>
-</html>
+@extends('layouts.template')
+
+@section('title', 'Dashboard')
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/customers.css') }}" />
+@endsection
+
+@section('content')
+<div class="container-fluid">
+    <div class="row">
+        @include('layouts.sidebar')
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="container mt-4 text-left">
+                <b style="color: #0084F8; font-size: 25px;">Metode Pembayaran</b>
+            </div>
+            <br>
+            <div class="container mt-4 text-center">
+                <b style="color: #0084F8; font-size: 25px;">Total Pembayaran</b>
+            </div>
+            <div class="container mt-4 text-center">
+                <b style="color: #000000; font-size: 25px;">RP.100.000</b>
+            </div>
+            <br>
+            <br>
+
+            <div class="row mt-4" style="display: flex; align-items: stretch;">
+
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-2">
+                    <div class="card" style="height: 200px;">       
+                        <button class="btn btn-white" class="btn active" data-bs-toggle="button" aria-pressed="true" 
+                            style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <img src="{{ asset('img/bri.png') }}" alt="LogoBRI" width="100"
+                                style="max-width: 150px; max-height: 100px;">
+                        </button>        
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card" style="height: 100%;">       
+                        <button class="btn btn-white" class="btn active" data-bs-toggle="button" aria-pressed="true" 
+                            style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <img src="{{ asset('img/bm.png') }}" alt="LogoBM" width="120"
+                                style="max-width: 300px; max-height: 100px;">
+                        </button>        
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card" style="height: 100%;">       
+                        <button class="btn btn-white" class="btn active" data-bs-toggle="button" aria-pressed="true" 
+                            style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <img src="{{ asset('img/bca.png') }}" alt="LogoBCA" width="110 "
+                                style="max-width: 150px; max-height: 100px; margin-top: 25px"><br>
+                        </button>        
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card" style="height: 100%;">       
+                        <button class="btn btn-white" class="btn active" data-bs-toggle="button" aria-pressed="true" 
+                            style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <img src="{{ asset('img/tukarPoin.png') }}" alt="Tarik Saldo"
+                                style="max-width: 30px; max-height: 50px;">
+                                <span style="color: #000000; font-size: 25px;">COD</span>
+                        </button>        
+                    </div>
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+            <br>
+            <div class="container mt-4">
+                <div class="row">
+                <div class="col-md-2"></div>
+                    <div class="col-md-8 text-center">
+                        <div class="d-grid mx-auto">
+                            <button class="btn btn-primary" type="button">Konfirmasi & Bayar</button>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+@endsection

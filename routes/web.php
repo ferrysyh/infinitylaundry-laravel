@@ -80,6 +80,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/tariksaldo_customers', function () {
         return view('pages.customers.tariksaldo');
     });
+
+    Route::get('pembayaran',function(){
+        return view('pages.customers.order.payment');
+    });
 });
 
 // Route::get('/admin', [DashboardController::class, 'admin'])->name('admin');
