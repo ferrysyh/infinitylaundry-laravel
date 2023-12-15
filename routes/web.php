@@ -76,6 +76,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/faq_owner', function () {
         return view('pages.owner.faq');
     });
+
+    Route::get('/tariksaldo_customers', function () {
+        return view('pages.customers.tariksaldo');
+    });
 });
 
 // Route::get('/admin', [DashboardController::class, 'admin'])->name('admin');
