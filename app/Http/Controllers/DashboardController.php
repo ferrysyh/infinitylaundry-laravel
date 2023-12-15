@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Laundry;
+use App\Models\Package;
 use App\Models\TransactionHistory;
 use Illuminate\Http\Request;
 
@@ -24,6 +26,10 @@ class DashboardController extends Controller
             $transactionHistories = TransactionHistory::where('user_id', $userId)->get();
             $transactionHistories = TransactionHistory::with('LaundryOrder')->where('laundry_id', $userId)->get();
             return view('pages.owner.dashboard', ['transactionHistories' => $transactionHistories]);
+        } elseif ($role === 'admin') {
+            $laundry = Laundry::get();
+            $package = Package::get();
+            return view('pages.admin.dashboard', ['laundry' => $laundry, 'package' => $package]);
         }
     }
 
@@ -41,4 +47,10 @@ class DashboardController extends Controller
             return view('pages.owner.dashboard', ['transactionHistories' => $transactionHistories]);
         }
     }
+
+    // public function admin(){
+    //     $laundry = Laundry::get();
+    //     $package = Package::get();
+    //     return view('pages.admin.dashboard', ['laundry' => $laundry, 'package' => $package]);
+    // }
 }
