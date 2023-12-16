@@ -39,8 +39,6 @@ class DashboardController extends Controller
 
         if ($role === 'customer') {
             return view('pages.customers.order.riwayat', ['transactionHistories' => $transactionHistories]);
-        } elseif ($role === 'owner') {
-            return view('pages.owner.dashboard', ['transactionHistories' => $transactionHistories]);
         }
     }
 }

@@ -61,27 +61,18 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="col-md-2">
-                        <div class="card" style="height: 100%;">
-                            <div class="card-body">
-                                <a href="#" class="btn btn-white" style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                    <img src="{{ asset('img/tukarPoin.png') }}" alt="Tukar Poin" style="max-width: 30px; max-height: 50px;">
-                                    <span>Tukar Poin</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
                 
                 <div class="mt-5">
-                    <h3>Pemesanan Diproses</h3>
-                    <table class="table">
+                    <h3>Pemesanan Berjalan</h3>
+                    <table class="table text-center">
                         <thead>
                             <tr>
                                 <th>No. Pesanan</th>
                                 <th>Tanggal Pemesanan</th>
                                 <th>Status</th>
-                                <th></th>
+                                <th>Nominal</th>
+                                <th>Tempat</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -90,7 +81,8 @@
                                     <td>{{ $history->order_id }}</td>
                                     <td>{{ $history->created_at->format('D, d M Y') }}</td>
                                     <td>{{$history->statuspembayaran }}</td>
-                                    <td><a href="" style="text-decoration: none">Details</a></td>
+                                    <td>Rp {{ number_format($history->price, 2, ',', '.') }}</td>
+                                    <td>{{ $history->laundry->name }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
