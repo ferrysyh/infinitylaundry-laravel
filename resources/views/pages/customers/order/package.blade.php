@@ -47,7 +47,7 @@
                                         <h5 class="card-title">{{ $package->name }}</h5>
                                         <p class="card-text">Estimasi Durasi: {{ $package->duration }} hari</p>
                                         <p class="card-text">Harga: Rp {{ number_format($package->price, 0) }}/Kg</p>
-                                        <a href="{{ route('items', ['laundryId' => $selectedLaundry->id, 'packageId' => $package->id]) }}" class="btn btn-primary" style="width: 100%;">Pilih Paket</a>
+                                        <a href="{{ route('items', ['laundryId' => encrypt($selectedLaundry->id), 'packageId' => encrypt($package->id)]) }}" class="btn btn-primary" style="width: 100%;">Pilih Paket</a>
                                     </div>
                                 </div>
                             </div>

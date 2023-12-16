@@ -92,7 +92,8 @@ class LaundryController extends Controller
 
     public function showPackage(Request $request, $id)
     {
-        $selectedLaundry = Laundry::find($id);
+        $decryptedId = decrypt($id);
+        $selectedLaundry = Laundry::find($decryptedId);
         if (!$selectedLaundry) {
             abort(404);
         }
@@ -102,8 +103,10 @@ class LaundryController extends Controller
 
     public function showItems($laundryId, $packageId)
     {
-        $selectedLaundry = Laundry::find($laundryId);
-        $selectedPackage = Package::find($packageId);
+        $decryptedLaundryId = decrypt($laundryId);
+        $decryptedPackageId = decrypt($packageId);
+        $selectedLaundry = Laundry::find($decryptedLaundryId);
+        $selectedPackage = Package::find($decryptedPackageId);
         if (!$selectedLaundry || !$selectedPackage) {
             abort(404); 
         }
