@@ -4,6 +4,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/customers.css') }}" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 @endsection
 
 @section('content')
@@ -20,14 +21,16 @@
                 
                 <div class="mt-5">
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-7">
                             <h3>Toko Laundry</h3>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" id="searchLaundry" class="form-control form-control-sm" placeholder="Cari Laundry">
                         </div>
                         <div class="col-md-2">
                             <a href="/laundry/create" class="btn btn-sm btn-success">Tambah Data</a>
                         </div>
-                    </div>
-                    <table class="table text-center">
+                        <table id="laundryTable" class="table text-center">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -70,14 +73,17 @@
 
                 <div class="mt-5">
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-7">
                             <h3>Paket Laundry</h3>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" id="searchPackage" class="form-control form-control-sm" placeholder="Cari Paket">
                         </div>
                         <div class="col-md-2">
                             <a href="/paket/create" class="btn btn-sm btn-success">Tambah Data</a>
                         </div>
                     </div>
-                    <table class="table text-center">
+                    <table id="packageTable" class="table text-center">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -113,4 +119,26 @@
         </main>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('#searchLaundry').on('keyup', function () {
+            let searchTerm = $(this).val().toLowerCase();
+            
+            // Filter dan sembunyikan baris yang tidak sesuai dengan kriteria pencarian
+            $('#laundryTable tbody tr').filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(searchTerm) > -1);
+            });
+        });
+
+        $('#searchPackage').on('keyup', function () {
+            let searchTerm = $(this).val().toLowerCase();
+            
+            // Filter dan sembunyikan baris yang tidak sesuai dengan kriteria pencarian
+            $('#packageTable tbody tr').filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(searchTerm) > -1);
+            });
+        });
+    });
+</script>
 @endsection
