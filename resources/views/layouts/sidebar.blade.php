@@ -15,9 +15,14 @@
                 <a class="nav-link" href="{{ url('/laporan') }}">Laporan</a>
             </li>
             @endif
-            @if (auth()->user()->role != 'admin')
+            @if (auth()->user()->role != 'admin' && auth()->user()->role == 'customer')
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/faq') }}">Bantuan</a>
+                <a class="nav-link" href="{{ url('/faq_customers') }}">Bantuan</a>
+            </li>
+            @endif
+            @if (auth()->user()->role != 'admin' && auth()->user()->role == 'owner')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/faq_owner') }}">Bantuan</a>
             </li>
             @endif
             @endauth

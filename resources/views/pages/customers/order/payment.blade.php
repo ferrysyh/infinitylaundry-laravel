@@ -29,39 +29,36 @@
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-2">
-                    <div class="card" style="height: 200px;">       
+                    <div>       
                         <button class="btn btn-white" class="btn active" data-bs-toggle="button" aria-pressed="true" 
-                            style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                <img src="{{ asset('img/bri.png') }}" alt="LogoBRI" width="100"
-                                style="max-width: 150px; max-height: 100px;">
+                            style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <img src="{{ asset('img/bri.png') }}" alt="LogoBRI" width="100%">
                         </button>        
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <div class="card" style="height: 100%;">       
+                    <div>       
                         <button class="btn btn-white" class="btn active" data-bs-toggle="button" aria-pressed="true" 
-                            style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                            <img src="{{ asset('img/bm.png') }}" alt="LogoBM" width="120"
-                                style="max-width: 300px; max-height: 100px;">
+                            style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <img src="{{ asset('img/bm.png') }}" alt="LogoBM" width="100%">
                         </button>        
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <div class="card" style="height: 100%;">       
+                    <div>       
                         <button class="btn btn-white" class="btn active" data-bs-toggle="button" aria-pressed="true" 
-                            style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                <img src="{{ asset('img/bca.png') }}" alt="LogoBCA" width="110 "
-                                style="max-width: 150px; max-height: 100px; margin-top: 25px"><br>
+                            style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <img src="{{ asset('img/bca.png') }}" alt="LogoBM" width="100%">
                         </button>        
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <div class="card" style="height: 100%;">       
+                    <div style="height: 100%;">       
                         <button class="btn btn-white" class="btn active" data-bs-toggle="button" aria-pressed="true" 
                             style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                                 <img src="{{ asset('img/tukarPoin.png') }}" alt="Tarik Saldo"
                                 style="max-width: 30px; max-height: 50px;">
-                                <span style="color: #000000; font-size: 25px;">COD</span>
+                                <span>Cash on Delivery</span>
                         </button>        
                     </div>
                 </div>

@@ -65,8 +65,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/submit-confirmation', [LaundryController::class, 'submitConfirmation'])->name('submit.confirmation');
 
     Route::get('/payment', function () {
-        return view('pages.customers.order.laundry');
-    });
+        return view('pages.customers.order.payment');
+    })->name('payment');
 
     Route::get('/riwayat', [DashboardController::class, 'riwayat'])->name('riwayat');
 
@@ -80,10 +80,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/tariksaldo_customers', function () {
         return view('pages.customers.tariksaldo');
-    });
-
-    Route::get('pembayaran',function(){
-        return view('pages.customers.order.payment');
     });
 
     Route::get('/laundry/{id}/edit', [LaundryController::class, 'edit']);
