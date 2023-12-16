@@ -135,7 +135,7 @@
                                     <ul class="selected-items"></ul>
                                     <input type="hidden" name="laundry_id" value="{{ $selectedLaundry->id }}">
                                     <input type="hidden" name="package_id" value="{{ $selectedPackage->id }}">
-                                    <button type="submit" class="btn btn-primary btn-submit">Selesai</button>
+                                    <button type="submit" class="btn btn-primary btn-submit" style="width: 100%;">Selesai</button>
                                 </form>
                             </div>    
                         </div>

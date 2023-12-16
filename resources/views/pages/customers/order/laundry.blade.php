@@ -31,7 +31,7 @@
                                                 @endif
                                             @endfor
                                         </p>
-                                        <a href="{{ route('package', ['id' => $laundry->id]) }}" class="btn btn-primary">Pilih Laundry</a>
+                                        <a href="{{ route('package', ['id' => $laundry->id]) }}" class="btn btn-primary" style="width: 100%;">Pilih Laundry</a>
                                     </div>
                                 </div>
                             </div>
