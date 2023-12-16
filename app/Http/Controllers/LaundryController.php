@@ -134,17 +134,25 @@ class LaundryController extends Controller
             $selectedLaundryItem->save();
         }
         
+        $encryptedLaundryId = encrypt($request->input('laundry_id'));
+        $encryptedPackageId = encrypt($request->input('package_id'));
+        $encryptedOrderId = encrypt($laundryOrder->id);
+        
         return redirect()->route('confirm', [
-            'laundry_id' => $request->input('laundry_id'),
-            'package_id' => $request->input('package_id'),
-            'order_id' => $laundryOrder->id,
+            'laundry_id' => $encryptedLaundryId,
+            'package_id' => $encryptedPackageId,
+            'order_id' => $encryptedOrderId,
         ]);
     }
 
     public function confirm($laundry_id, $package_id, $order_id) {
-        $selectedLaundry = Laundry::find($laundry_id);
-        $selectedPackage = Package::find($package_id);
-        $laundryOrder = LaundryOrder::find($order_id);
+        $decryptedLaundryId = decrypt($laundry_id);
+        $decryptedPackageId = decrypt($package_id);
+        $decryptedOrderId = decrypt($order_id);
+
+        $selectedLaundry = Laundry::find($decryptedLaundryId);
+        $selectedPackage = Package::find($decryptedPackageId);
+        $laundryOrder = LaundryOrder::find($decryptedOrderId);
 
         $totalWeight = $laundryOrder->selectedLaundryItems->sum('quantity');
         $totalWeight = $this->calculateTotalWeight($laundryOrder->selectedLaundryItems);
