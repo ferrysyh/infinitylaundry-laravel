@@ -25,7 +25,11 @@ class LaundryController extends Controller
      */
     public function create()
     {
-        //
+        return view('layouts.formlaundry', [
+            'title' => 'Tambah',
+            'method' => 'POST',
+            'action' => 'laundry'
+        ]);
     }
 
     /**
@@ -33,7 +37,13 @@ class LaundryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $laundry = new Laundry;
+        $laundry->name = $request->name;
+        $laundry->address = $request->address;
+        $laundry->rating = $request->rating;
+        $laundry->img_path = $request->img_path;
+        $laundry->save();
+        return redirect('/dashboard');
     }
 
     /**
@@ -41,7 +51,7 @@ class LaundryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Laundry::find($id);
     }
 
     /**
@@ -49,7 +59,12 @@ class LaundryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('layouts.formlaundry', [
+            'title' => 'Edit',
+            'method' => 'PUT',
+            'action' => "laundry/$id",
+            'laundry' => Laundry::find($id)
+        ]);
     }
 
     /**
@@ -57,7 +72,13 @@ class LaundryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $laundry = Laundry::find($id);
+        $laundry->name = $request->name;
+        $laundry->address = $request->address;
+        $laundry->rating = $request->rating;
+        $laundry->img_path = $request->img_path;
+        $laundry->save();
+        return redirect('/dashboard');
     }
 
     /**
@@ -65,7 +86,8 @@ class LaundryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Laundry::destroy($id);
+        return redirect('/dashboard');
     }
 
     public function showPackage(Request $request, $id)

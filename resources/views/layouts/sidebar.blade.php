@@ -15,10 +15,12 @@
                 <a class="nav-link" href="{{ url('/laporan') }}">Laporan</a>
             </li>
             @endif
-            @endauth
+            @if (auth()->user()->role != 'admin')
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/faq') }}">Bantuan</a>
             </li>
+            @endif
+            @endauth
             <li class="nav-item">
                 <a class="nav-link text-danger" href="logout">Logout</a>
             </li>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaundryController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PackageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -84,6 +85,24 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('pembayaran',function(){
         return view('pages.customers.order.payment');
     });
-});
 
-// Route::get('/admin', [DashboardController::class, 'admin'])->name('admin');
+    Route::get('/laundry/{id}/edit', [LaundryController::class, 'edit']);
+
+    Route::put('/laundry/{id}', [LaundryController::class, 'update']);
+
+    Route::get('/laundry/create', [LaundryController::class, 'create']);
+
+    Route::post('/laundry', [LaundryController::class, 'store']);
+
+    Route::delete('/laundry/{id}', [LaundryController::class, 'destroy']);
+
+    Route::get('/package/{id}/edit', [PackageController::class, 'edit']);
+
+    Route::put('/package/{id}', [PackageController::class, 'update']);
+
+    Route::get('/paket/create', [PackageController::class, 'create']);
+
+    Route::post('/package', [PackageController::class, 'store']);
+
+    Route::delete('/package/{id}', [PackageController::class, 'destroy']);
+});

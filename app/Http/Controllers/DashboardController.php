@@ -12,10 +12,6 @@ class DashboardController extends Controller
     public function index()
     {
         $userId = auth()->user()->id;
-
-        // $transactionHistories = TransactionHistory::where('user_id', $userId)->get();
-        // $transactionHistories = TransactionHistory::with('LaundryOrder')->where('user_id', $userId)->get();
-
         $role = auth()->user()->role;
 
         if ($role === 'customer') {
@@ -47,10 +43,4 @@ class DashboardController extends Controller
             return view('pages.owner.dashboard', ['transactionHistories' => $transactionHistories]);
         }
     }
-
-    // public function admin(){
-    //     $laundry = Laundry::get();
-    //     $package = Package::get();
-    //     return view('pages.admin.dashboard', ['laundry' => $laundry, 'package' => $package]);
-    // }
 }
