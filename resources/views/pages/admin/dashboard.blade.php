@@ -123,18 +123,14 @@
 <script>
     $(document).ready(function () {
         $('#searchLaundry').on('keyup', function () {
-            let searchTerm = $(this).val().toLowerCase();
-            
-            // Filter dan sembunyikan baris yang tidak sesuai dengan kriteria pencarian
+            let searchTerm = $(this).val().toLowerCase();            
             $('#laundryTable tbody tr').filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(searchTerm) > -1);
             });
         });
 
         $('#searchPackage').on('keyup', function () {
-            let searchTerm = $(this).val().toLowerCase();
-            
-            // Filter dan sembunyikan baris yang tidak sesuai dengan kriteria pencarian
+            let searchTerm = $(this).val().toLowerCase();            
             $('#packageTable tbody tr').filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(searchTerm) > -1);
             });
