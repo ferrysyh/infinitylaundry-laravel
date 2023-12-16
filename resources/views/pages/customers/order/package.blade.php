@@ -4,6 +4,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/customers.css') }}" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 @endsection
 
 @section('content')
@@ -37,9 +38,14 @@
                             </div>
                         </div>
                     </div>
-
                     <h3>Pilih Paket Laundry</h3>
-                    <div class="row mt-4">
+                    <div class="row">
+                        <div class="col-md-9"></div>
+                        <div class="col-md-3">
+                            <input type="text" id="searchPackage" class="form-control" placeholder="Cari Paket">
+                        </div>
+                    </div>
+                    <div class="row mt-4" id="packageList">
                         @forelse ($selectedLaundry->packages as $package)
                             <div class="col-md-4">
                                 <div class="card mb-4">
@@ -59,4 +65,14 @@
             </main>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('#searchPackage').on('keyup', function () {
+                let searchTerm = $(this).val().toLowerCase();
+                $('#packageList .card').filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(searchTerm) > -1);
+                });
+            });
+        });
+    </script>
 @endsection
