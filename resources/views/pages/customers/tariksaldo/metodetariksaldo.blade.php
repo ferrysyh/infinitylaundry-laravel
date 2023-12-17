@@ -12,11 +12,11 @@
         @include('layouts.sidebar')
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="container mt-4 text-left">
-                <b style="color: #0084F8; font-size: 25px;">Metode Pembayaran</b>
+                <b style="color: #0084F8; font-size: 25px;">Metode Penarikan Saldo</b>
             </div>
             <br>
             <div class="container mt-4 text-center">
-                <b style="color: #0084F8; font-size: 25px;">Total Pembayaran</b>
+                <b style="color: #0084F8; font-size: 25px;">Total Penarikan Saldo</b>
             </div>
             <div class="container mt-4 text-center">
                 <b style="color: #000000; font-size: 25px;">RP.100.000</b>
@@ -56,29 +56,14 @@
                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
                             <label class="btn btn-white" for="btnradio4" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                <img src="{{ asset('img/tukarPoin.png') }}" alt="LogoCod" width="50%">
-                                <br><strong>COD</strong>
+                                <img src="{{ asset('img/logoDANA.png') }}" alt="LogoDANA" width="100%">
                             </label>
                     </div>
                 </div>
                 <div class="col-md-2">
                 </div>
             </div>
-          
-
-            <div class="row mt-4" style="display: flex; align-items: stretch;">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-8">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Masukkan Poin</span>
-                        <input type="text" placeholder="Rp0" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                        <button class="btn btn-primary btn-add-item" type="button" id="button-addon">Tambah</button>
-                    </div>
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-
+            <br>
             <div class="container mt-4">
                 <div class="row">
                 <div class="col-md-2"></div>
