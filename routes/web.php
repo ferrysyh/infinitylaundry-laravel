@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaundryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\BalanceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,9 +42,11 @@ Route::get('/service', function () {
     return view('pages.service');
 });
 
-Route::get('/topup', function () {
-    return view('pages.customers.topup');
-});
+Route::get('/topup', [BalanceController::class, 'showForm'])->name('topup');
+
+Route::post('/pembayaran', [BalanceController::class, 'processNominal'])->name('pembayaran');
+
+
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
