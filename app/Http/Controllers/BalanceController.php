@@ -15,6 +15,11 @@ class BalanceController extends Controller
         return view('pages.customers.topup');
     }
 
+    public function showFormCustomers()
+    {
+        return view('pages.customers.tariksaldo.tariksaldo');
+    }
+
     public function processNominal(Request $request)
     {
         $selectedNominal = $request->input('options-base');
@@ -32,6 +37,28 @@ class BalanceController extends Controller
         if (array_key_exists($selectedNominal, $nominals)) {
             $selectedValue = $nominals[$selectedNominal];
             return view('pages.customers.pembayaran', ['selectedValue' => $selectedValue]);
+        } else {
+            return "Nominal tidak valid. Silakan pilih nominal yang valid.";
+        }
+    }
+
+    public function processNominalCustomers(Request $request)
+    {
+        $selectedNominalCustomers = $request->input('options-base');
+        $nominals = [
+            10000 => 'Rp10.000',
+            20000 => 'Rp20.000',
+            50000 => 'Rp50.000',
+            100000 => 'Rp100.000',
+            150000 => 'Rp150.000',
+            200000 => 'Rp200.000',
+            500000 => 'Rp500.000',
+            1000000 => 'Rp1.000.000',
+        ];
+
+        if (array_key_exists($selectedNominalCustomers, $nominals)) {
+            $selectedValueCustomers = $nominals[$selectedNominalCustomers];
+            return view('pages.customers.tariksaldo.metodetariksaldo', ['selectedValueCustomers' => $selectedValueCustomers]);
         } else {
             return "Nominal tidak valid. Silakan pilih nominal yang valid.";
         }

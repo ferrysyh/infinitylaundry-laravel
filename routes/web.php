@@ -81,13 +81,9 @@ Route::group(['middleware' => ['auth']], function () {
         return view('pages.owner.faq');
     });
 
-    Route::get('/tariksaldo_customers', function () {
-        return view('pages.customers.tariksaldo.tariksaldo');
-    });
+    Route::get('/tariksaldo_customers', [BalanceController::class, 'showFormCustomers'])->name('tariksaldo');
 
-    Route::get('/metodetariksaldo_customers', function () {
-        return view('pages.customers.tariksaldo.metodetariksaldo');
-    });
+    Route::post('/metodetariksaldo_customers', [BalanceController::class, 'processNominalCustomers'])->name('metodetariksaldo');
 
     Route::get('/berhasiltariksaldo_customers', function () {
         return view('pages.customers.tariksaldo.berhasiltariksaldo');
