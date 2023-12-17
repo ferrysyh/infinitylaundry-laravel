@@ -204,6 +204,8 @@ class LaundryController extends Controller
             'price' => $price,
         ]);
 
-        return redirect()->route('payment');
+        $encryptedOrderId = encrypt($orderId);
+
+        return redirect()->route('payment', ['id' => $encryptedOrderId]);
     }
 }

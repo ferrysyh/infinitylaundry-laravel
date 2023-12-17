@@ -64,7 +64,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/submit-confirmation', [LaundryController::class, 'submitConfirmation'])->name('submit.confirmation');
 
-    Route::get('/payment', function () {
+    Route::get('/payment/{id}', function () {
         return view('pages.customers.order.payment');
     })->name('payment');
 
