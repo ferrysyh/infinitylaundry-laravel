@@ -86,6 +86,10 @@ Route::group(['middleware' => ['auth']], function () {
         return view('pages.customers.tariksaldo.metodetariksaldo');
     });
 
+    Route::get('/berhasiltariksaldo_customers', function () {
+        return view('pages.customers.tariksaldo.berhasiltariksaldo');
+    });
+
     Route::get('/laundry/{id}/edit', [LaundryController::class, 'edit']);
 
     Route::put('/laundry/{id}', [LaundryController::class, 'update']);
