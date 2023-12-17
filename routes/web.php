@@ -109,4 +109,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/package', [PackageController::class, 'store']);
 
     Route::delete('/package/{id}', [PackageController::class, 'destroy']);
+
+    Route::get('/laporan', function () {
+        return view('pages.owner.laporan');
+    });
+
 });
