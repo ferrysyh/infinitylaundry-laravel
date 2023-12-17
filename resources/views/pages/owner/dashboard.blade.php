@@ -10,7 +10,8 @@
 <div class="container-fluid">
     <div class="row">
         @include('layouts.sidebar')
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="container mt-4">
                 <div class="row mt-4">
@@ -86,8 +87,11 @@
                                         <td>{{ $history->order_id }}</td>
                                         <td>{{ $history->created_at->format('D, d M Y') }}</td>
                                         <td>{{$history->statuspembayaran }}</td>
-                                        <td><a href="" style="text-decoration: none">Details</a></td>
+                                        <td><button class = "btn btn-primary btn-lg" data-toggle = "modal" data-target = "#myModal">
+                                        Detail
+                                        </button>
                                     </tr>
+                                    
                                     @endforeach
                             </table>
                         </div>
@@ -95,27 +99,47 @@
                 <div class="mt-5">
                     <h3>Pemesanan Diproses</h3>
                     <table class="table">
-                        <thead>
-                            <tr>
-                                <th>No. Pesanan</th>
-                                <th>Tanggal Pemesanan</th>
-                                <th>Status</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($transactionHistories->where('statuspembayaran', '!=', 'Selesai') as $history)
-                                <tr>
-                                    <td>{{ $history->order_id }}</td>
-                                    <td>{{ $history->created_at->format('D, d M Y') }}</td>
-                                    <td>{{$history->statuspembayaran }}</td>
-                                    <td><a href="" style="text-decoration: none">Details</a></td>
-                                </tr>
-                            @endforeach
-                        </tbody>
                     </table>
                 </div>
             </div>
+            <!-- Modal -->
+<div class = "modal fade" id = "myModal" tabindex = "-1" role = "dialog" 
+   aria-labelledby = "myModalLabel" aria-hidden = "true">
+   
+   <div class = "modal-dialog">
+      <div class = "modal-content">
+         
+         <div class = "modal-header">
+            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+                  &times;
+            </button>
+            
+            <h4 class = "modal-title" id = "myModalLabel">
+               Detail pesanan
+            </h4>
+         </div>
+         
+         <div class = "modal-body">
+         <tr>
+                <th>No. Pesanan : {{ $history->order_id }}</th><br>
+                <th>Tanggal Pemesanan : {{ $history->created_at->format('D, d M Y') }}</th><br>
+                <th>Status : {{$history->statuspembayaran }}</th><br>
+                <th>Biaya : Rp {{ number_format($history->price, 2, ',', '.') }}</th>
+                <th></th>
+        </tr>
+         </div>
+         
+         <div class = "modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" id="acceptBtn">Accept</button>
+                <button type="button" class="btn btn-danger" id="declineBtn">Decline</button>
+        </div>
+        </div>
+         
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  
+    </div><!-- /.modal -->
         </main>
     </div>
 </div>
