@@ -12,8 +12,8 @@
             <div class="navbar-nav ms-auto">
                 <a class="nav-link ms-2" aria-current="page" href="{{ url('/') }}">Beranda</a>
                 <a class="nav-link ms-2" href="{{ url('/service') }}">Layanan</a>
-                <a class="nav-link ms-2" href="{{ url('/contact') }}">Kontak</a>
-                <a class="nav-link ms-2" href="{{ url('/about') }}">Tentang Kami</a>
+                <a class="nav-link ms-2" href="{{ url('/contact') }}">Team</a>
+                <a class="nav-link ms-2" href="{{ url('/about') }}">Tentang</a>
             </div>
         </div>
     </div>

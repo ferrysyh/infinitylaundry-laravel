@@ -26,10 +26,6 @@ Route::post('/postRegist', [LoginController::class, 'postRegist']);
 
 Route::post('/postLogin', [LoginController::class, 'postLogin']);
 
-Route::get('/logout', [LoginController::class, 'logout']);
-Route::get('/{any?}/logout', [LoginController::class, 'logout'])
-    ->where('any', '.*');
-
 Route::get('/about', function () {
     return view('pages.about');
 });
@@ -51,6 +47,10 @@ Route::post('/pembayaran', [BalanceController::class, 'processNominal'])->name('
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::get('/logout', [LoginController::class, 'logout']);
+    Route::get('/{any?}/logout', [LoginController::class, 'logout'])
+        ->where('any', '.*');
+
     Route::get('/order', function () {
         return view('pages.customers.order.laundry');
     });
@@ -67,7 +67,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/submit-confirmation', [LaundryController::class, 'submitConfirmation'])->name('submit.confirmation');
 
-    Route::get('/payment', function () {
+    Route::get('/payment/{id}', function () {
         return view('pages.customers.order.payment');
     })->name('payment');
 
@@ -82,7 +82,15 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::get('/tariksaldo_customers', function () {
-        return view('pages.customers.tariksaldo');
+        return view('pages.customers.tariksaldo.tariksaldo');
+    });
+
+    Route::get('/metodetariksaldo_customers', function () {
+        return view('pages.customers.tariksaldo.metodetariksaldo');
+    });
+
+    Route::get('/berhasiltariksaldo_customers', function () {
+        return view('pages.customers.tariksaldo.berhasiltariksaldo');
     });
 
     Route::get('/laundry/{id}/edit', [LaundryController::class, 'edit']);
@@ -104,4 +112,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/package', [PackageController::class, 'store']);
 
     Route::delete('/package/{id}', [PackageController::class, 'destroy']);
+
+    Route::get('/laporan', function () {
+        return view('pages.owner.laporan');
+    });
+
 });
