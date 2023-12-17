@@ -31,7 +31,7 @@
                 <p class="mt-2 mb-0"><b>Adam Syam Nursal<br>1303210099</b></p>
             </div>
             <div class="col-md-2 text-center d-flex flex-column align-items-center justify-content-center text-white" style="background-color: #58C2F1;">
-                <img src="" alt="" height="150px">
+                <img src="{{ asset("img/person/alfi.jpg") }}" alt="" height="150px">
                 <p class="mt-2 mb-0"><b>Alfi Hadi Maulana<br>1303210052</b></p>
             </div>
             <div class="col-md-3"></div>
