@@ -78,11 +78,11 @@
                                         <th>No. Pesanan</th>
                                         <th>Tanggal Pemesanan</th>
                                         <th>Status</th>
-                                        <th></th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($transactionHistories->where('statuspembayaran', '!=', 'Selesai') as $history)
+                                    @foreach ($transactionHistories->where('statuspembayaran', '==', 'Menunggu pembayaran') as $history)
                                     <tr>
                                         <td>{{ $history->order_id }}</td>
                                         <td>{{ $history->created_at->format('D, d M Y') }}</td>
@@ -95,13 +95,34 @@
                                     @endforeach
                             </table>
                         </div>
-
-                <div class="mt-5">
-                    <h3>Pemesanan Diproses</h3>
-                    <table class="table">
-                    </table>
+                        <div class="mt-5">
+                                <h3>Pesanan Diproses</h3>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>No. Pesanan</th>
+                                            <th>Tanggal Pemesanan</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($transactionHistories->where('statuspembayaran', '==', 'Diproses') as $history)
+                                        <tr>
+                                            <td>{{ $history->order_id }}</td>
+                                            <td>{{ $history->created_at->format('D, d M Y') }}</td>
+                                            <td>{{$history->statuspembayaran }}</td>
+                                            <td><button class = "btn btn-primary btn-lg" data-toggle = "modal" data-target = "#myModal">
+                                            Detail
+                                            </button>
+                                        </tr>
+                                        
+                                        @endforeach
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
             <!-- Modal -->
 <div class = "modal fade" id = "myModal" tabindex = "-1" role = "dialog" 
    aria-labelledby = "myModalLabel" aria-hidden = "true">

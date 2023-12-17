@@ -10,7 +10,8 @@
 <div class="container-fluid">
     <div class="row">
         @include('layouts.sidebar')
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="container mt-4">
                 <div class="row mt-4">
@@ -73,6 +74,7 @@
                                 <th>Status</th>
                                 <th>Nominal</th>
                                 <th>Tempat</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,10 +85,41 @@
                                     <td>{{$history->statuspembayaran }}</td>
                                     <td>Rp {{ number_format($history->price, 2, ',', '.') }}</td>
                                     <td>{{ $history->laundry->name }}</td>
+                                    <td>
+                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <button class="btn btn-primary me-md-2" type="button" data-toggle="modal" data-target='#myModal'>Laporan</button>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    <div class = "modal fade" id = "myModal" tabindex = "-1" role = "dialog" 
+                    aria-labelledby = "myModalLabel" aria-hidden = "true">
+   
+                        <div class = "modal-dialog">
+                        <div class = "modal-content">
+         
+                        <div class = "modal-header">
+                            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+                            &times;
+                            </button>
+                        </div>
+         
+                        <div class = "modal-body">
+                        <tr>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Laporan</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </tr>
+                    </div>
+         
+                    <div class = "modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" id="acceptBtn">Accept</button>
+                    </div>
+                </div>
                 </div>
             </div>
         </main>
