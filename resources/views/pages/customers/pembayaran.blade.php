@@ -56,8 +56,8 @@
                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
                             <label class="btn btn-white" for="btnradio4" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                <img src="{{ asset('img/tukarPoin.png') }}" alt="LogoCod" width="50%">
-                                <br><strong>COD</strong>
+                                <img src="{{ asset('img/logoDANA.png') }}" alt="LogoCod" width="100%">
+                                
                             </label>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                 <div class="col-md-2"></div>
                     <div class="col-md-8 text-center">
                         <div class="d-grid mx-auto">
-                            <button class="btn btn-primary" type="button">Konfirmasi & Bayar</button>
+                            <a href="{{ url('/berhasil') }}" class="btn btn-primary" type="button">Konfirmasi & Bayar</a>
                         </div>
                     </div>
                     <div class="col-md-2"></div>

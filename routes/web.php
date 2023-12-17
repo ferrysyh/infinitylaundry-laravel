@@ -42,7 +42,9 @@ Route::get('/topup', [BalanceController::class, 'showForm'])->name('topup');
 
 Route::post('/pembayaran', [BalanceController::class, 'processNominal'])->name('pembayaran');
 
-
+Route::get('/berhasil', function () {
+    return view('pages.customers.berhasil');
+});
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
