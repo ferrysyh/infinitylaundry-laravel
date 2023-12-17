@@ -25,10 +25,6 @@ Route::post('/postRegist', [LoginController::class, 'postRegist']);
 
 Route::post('/postLogin', [LoginController::class, 'postLogin']);
 
-Route::get('/logout', [LoginController::class, 'logout']);
-Route::get('/{any?}/logout', [LoginController::class, 'logout'])
-    ->where('any', '.*');
-
 Route::get('/about', function () {
     return view('pages.about');
 });
@@ -48,6 +44,10 @@ Route::get('/topup', function () {
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::get('/logout', [LoginController::class, 'logout']);
+    Route::get('/{any?}/logout', [LoginController::class, 'logout'])
+        ->where('any', '.*');
+
     Route::get('/order', function () {
         return view('pages.customers.order.laundry');
     });
@@ -64,7 +64,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/submit-confirmation', [LaundryController::class, 'submitConfirmation'])->name('submit.confirmation');
 
-    Route::get('/payment', function () {
+    Route::get('/payment/{id}', function () {
         return view('pages.customers.order.payment');
     })->name('payment');
 
