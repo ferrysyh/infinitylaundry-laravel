@@ -157,10 +157,10 @@
         </div>
         </div>
          
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+      </div>
+    </div>
   
-    </div><!-- /.modal -->
+    </div>
         </main>
     </div>
 </div>
