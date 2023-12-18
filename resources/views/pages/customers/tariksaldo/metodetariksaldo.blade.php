@@ -69,7 +69,7 @@
                 <div class="col-md-2"></div>
                     <div class="col-md-8 text-center">
                         <div class="d-grid mx-auto">
-                            <a href="{{ url('/berhasiltariksaldo_customers') }}" class="btn btn-primary" type="button">Konfirmasi & Bayar</a>
+                            <a href="{{ url('/berhasiltariksaldo_customers') }}" class="btn btn-primary" type="button">Konfirmasi</a>
                         </div>
                     </div>
                     <div class="col-md-2"></div>
