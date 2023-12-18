@@ -175,7 +175,6 @@
             });
 
             $(".btn-submit").click(function () {
-                // Loop through selected items and add them to the form data
                 $(".selected-items li").each(function () {
                     var itemName = $(this).find("span").text().split(":")[0].trim();
                     var itemQuantity = $(this).find("span").text().split(":")[1].trim();
@@ -187,7 +186,6 @@
                     }).appendTo("form");
                 });
 
-                // Submit the form
                 $("form").submit();
             });
         });
