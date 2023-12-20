@@ -87,7 +87,7 @@
                                         <td>{{ $history->order_id }}</td>
                                         <td>{{ $history->created_at->format('D, d M Y') }}</td>
                                         <td>{{$history->statuspembayaran }}</td>
-                                        <td><button class = "btn btn-primary btn-lg" data-toggle = "modal" data-target = "#myModal">
+                                        <td><button class = "btn btn-primary btn-sm" data-toggle = "modal" data-target = "#myModal">
                                         Detail
                                         </button>
                                     </tr>
