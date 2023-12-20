@@ -25,7 +25,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                        <h5 class="card-title">Saldo Anda</h5>
+                                        <h5 class="card-title">Penghasilan Anda</h5>
                                         <h4 class="card-text">Rp {{ number_format(auth()->user()->balance, 2, ',', '.') }}</h4>
                                     </div>
                                 </div>
