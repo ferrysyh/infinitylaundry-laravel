@@ -76,17 +76,37 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $processedOrderIds = [];
+                            @endphp
+                    
                             @foreach ($transactionHistories->where('statuspembayaran', '!=', 'Selesai') as $history)
-                                <tr>
-                                    <td>{{ $history->order_id }}</td>
-                                    <td>{{ $history->created_at->format('D, d M Y') }}</td>
-                                    <td>{{$history->statuspembayaran }}</td>
-                                    <td>Rp {{ number_format($history->price, 2, ',', '.') }}</td>
-                                    <td>{{ $history->laundry->name }}</td>
-                                </tr>
+                                @php
+                                    $currentTime = now();
+                                    $createdAt = $history->created_at;
+                                    $timeDifference = $currentTime->diffInHours($createdAt);
+                                @endphp
+                    
+                                @if (!in_array($history->order_id, $processedOrderIds) && !($history->statuspembayaran == 'Menunggu pembayaran' && $timeDifference > 24))
+                                    <tr>
+                                        <td>{{ $history->order_id }}</td>
+                                        <td>{{ $history->created_at->format('D, d M Y') }}</td>
+                                        <td>{{ $history->statuspembayaran }}</td>
+                                        <td>Rp {{ number_format($history->price, 2, ',', '.') }}</td>
+                                        <td>{{ $history->laundry->name }}</td>
+                                        <td>
+                                            @if ($history->statuspembayaran == 'Menunggu pembayaran')
+                                                <a href="/payment/{{ encrypt($history->order_id) }}" class="btn btn-sm btn-primary">Bayar</a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @php
+                                        $processedOrderIds[] = $history->order_id;
+                                    @endphp
+                                @endif
                             @endforeach
                         </tbody>
-                    </table>
+                    </table>                    
                 </div>
             </div>
         </main>

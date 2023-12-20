@@ -73,6 +73,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/payment/{id}', [LaundryController::class, 'payment'])->name('payment');
 
+    Route::post('/payment-proc', [LaundryController::class, 'ordered'])->name('payment-proc');
+    
     Route::get('/riwayat', [DashboardController::class, 'riwayat'])->name('riwayat');
 
     Route::get('/faq_customers', function () {
@@ -84,6 +86,8 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::get('/tariksaldo_customers', [BalanceController::class, 'showFormCustomers'])->name('tariksaldo');
+
+    Route::post('/metodetariksaldo-proc', [BalanceController::class, 'update'])->name('metodetariksaldo-proc');
 
     Route::post('/metodetariksaldo_customers', [BalanceController::class, 'processNominalCustomers'])->name('metodetariksaldo');
 

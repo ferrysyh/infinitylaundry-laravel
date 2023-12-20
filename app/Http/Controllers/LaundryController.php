@@ -7,6 +7,7 @@ use App\Models\LaundryOrder;
 use App\Models\Package;
 use App\Models\SelectedLaundryItem;
 use App\Models\TransactionHistory;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LaundryController extends Controller
@@ -209,11 +210,27 @@ class LaundryController extends Controller
     }
 
     public function payment($id){
-        $decriptid = decrypt($id);
-        $payment = TransactionHistory::find($decriptid);
-        //dd($payment);
-        return view('pages.customers.order.payment', compact("payment"));
+        $decryptedOrderId = decrypt($id);
+        $transaction = TransactionHistory::where('order_id', $decryptedOrderId)->first();
+        return view('pages.customers.order.payment', ['transaction' => $transaction]);
     }
 
-    
+    public function ordered(Request $request){
+        $userId = $request->id;
+        $price = $request->price;
+        $transactionId = $request->transaction_id;
+        $balanceAwal = User::find($userId)->balance;
+        $transaction = TransactionHistory::find($transactionId);
+        $user = User::find($userId);
+        if ($balanceAwal < $price){
+            return redirect('/dashboard')->with('msg', 'Saldo tidak cukup');
+        } else {
+            $balance = $balanceAwal - $price;
+            $transaction->statuspembayaran = 'Sedang diproses';
+            $user->balance = $balance;
+            $user->save();
+            $transaction->save();
+            return redirect('/dashboard');
+        }
+    }
 }

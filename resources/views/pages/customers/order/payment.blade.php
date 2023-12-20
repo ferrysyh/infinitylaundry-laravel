@@ -19,7 +19,7 @@
                 <b style="color: #0084F8; font-size: 25px;">Total Pembayaran</b>
             </div>
             <div class="container mt-4 text-center">
-                <b style="color: #000000; font-size: 25px;">{{ $payment->price}}</b>
+                <b style="color: #000000; font-size: 25px;">Rp {{ number_format($transaction->price, 2, ',', '.') }}</b>
             </div>
             <br>
             <br>
@@ -57,7 +57,7 @@
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
                             <label class="btn btn-white" for="btnradio4" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                                 <img src="{{ asset('img/tukarPoin.png') }}" alt="LogoCod" width="50%">
-                                <br><strong>COD</strong>
+                                <p>COD</p>
                             </label>
                     </div>
                 </div>
@@ -70,7 +70,13 @@
                 <div class="col-md-2"></div>
                     <div class="col-md-8 text-center">
                         <div class="d-grid mx-auto">
-                            <button class="btn btn-primary" type="button">Konfirmasi & Bayar</button>
+                            <form action="{{ route('payment-proc') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ auth()->user()->id }}">
+                                <input type="hidden" name="price" value="{{ $transaction->price }}">
+                                <input type="hidden" name="transaction_id" value="{{ $transaction->id }}">
+                                <button type="submit" class="btn btn-primary">Konfirmasi & Bayar</button>
+                            </form>
                         </div>
                     </div>
                     <div class="col-md-2"></div>

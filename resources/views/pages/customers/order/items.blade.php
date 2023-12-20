@@ -155,19 +155,26 @@
                 if (!itemName) {
                     alert("Mohon isikan nama item");
                     return;
-                }else if (!itemQuantity) {
+                } else if (!itemQuantity) {
                     alert("Mohon isikan jumlah item");
                     return;
-                }else if (itemQuantity <= 0){
+                } else if (itemQuantity <= 0) {
                     alert("Jumlah item tidak valid");
                     return;
                 }
 
-                var itemHTML = "<li class='mb-1 list-group-item d-flex justify-content-between align-items-center'>" +
-                    "<span>" + itemName + " : " + itemQuantity + "</span>" +
-                    "<button class='btn btn-sm btn-danger btn-remove-item'>Hapus</button>" +
-                    "</li>";
-                $(".selected-items").append(itemHTML);
+                var existingItem = $(".selected-items").find("li:contains('" + itemName + "')");
+                if (existingItem.length > 0) {
+                    var existingQuantity = parseInt(existingItem.find("span").text().split(":")[1].trim());
+                    var newQuantity = existingQuantity + parseInt(itemQuantity);
+                    existingItem.find("span").text(itemName + " : " + newQuantity);
+                } else {
+                    var itemHTML = "<li class='mb-1 list-group-item d-flex justify-content-between align-items-center'>" +
+                        "<span>" + itemName + " : " + itemQuantity + "</span>" +
+                        "<button class='btn btn-sm btn-danger btn-remove-item'>Hapus</button>" +
+                        "</li>";
+                    $(".selected-items").append(itemHTML);
+                }
             });
 
             $(document).on("click", ".btn-remove-item", function () {
