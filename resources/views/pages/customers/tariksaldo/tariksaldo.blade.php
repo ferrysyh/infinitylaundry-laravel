@@ -132,23 +132,7 @@
                         </div>
 
 
-                    </div>
-                    <div class="row mt-4" style="display: flex; align-items: stretch;">
-                        <div class="col-md-2">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Nominal Lainnya</span>
-                                    <input type="text" placeholder="Rp0" name="nominalInput" class="form-control" aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-default">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                
-                            </div>
-                                
-                        </div>
-                            
+                    </div>                          
                     
                     <div class="row mt-4" style="display: flex; align-items: stretch;">
                         <div class="col-md-3">
