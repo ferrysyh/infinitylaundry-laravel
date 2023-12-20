@@ -34,6 +34,18 @@ class BalanceController extends Controller
             500000 => 500000,
             1000000 => 1000000,
         ];
+
+        $selectedBank = $request->input('btnradio');
+
+        $bankName = ($selectedBank == 'bri') ? 'Bank BRI' : (($selectedBank == 'mandiri') ? 'Bank Mandiri' : 'Nama Bank Lainnya');
+        ['bankName' => $bankName];
+
+        if (array_key_exists($selectedNominal, $nominals)) {
+            $selectedValue = $nominals[$selectedNominal];
+            return view('pages.customers.pembayaran', ['selectedValue' => $selectedValue]);
+        } else {
+            return "Nominal tidak valid. Silakan pilih nominal yang valid.";
+        }
     }
 
     public function processNominalCustomers(Request $request)
