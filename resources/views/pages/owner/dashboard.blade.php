@@ -72,7 +72,7 @@
 
                     <div class="mt-5">
                             <h3>Pesanan Masuk</h3>
-                            <table class="table">
+                            <table class="table text-center">
                                 <thead>
                                     <tr>
                                         <th>No. Pesanan</th>
@@ -82,22 +82,39 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $processedOrderIds = [];
+                                    @endphp
+                                
                                     @foreach ($transactionHistories->where('statuspembayaran', '==', 'Menunggu pembayaran') as $history)
-                                    <tr>
-                                        <td>{{ $history->order_id }}</td>
-                                        <td>{{ $history->created_at->format('D, d M Y') }}</td>
-                                        <td>{{$history->statuspembayaran }}</td>
-                                        <td><button class = "btn btn-primary btn-sm" data-toggle = "modal" data-target = "#myModal">
-                                        Detail
-                                        </button>
-                                    </tr>
-                                    
+                                        @php
+                                            $currentTime = now();
+                                            $createdAt = $history->created_at;
+                                            $timeDifference = $currentTime->diffInHours($createdAt);
+                                        @endphp
+                                
+                                        @if ($timeDifference <= 24 && !in_array($history->order_id, $processedOrderIds))
+                                            <tr>
+                                                <td>{{ $history->order_id }}</td>
+                                                <td>{{ $history->created_at->format('D, d M Y') }}</td>
+                                                <td>{{ $history->statuspembayaran }}</td>
+                                                <td>
+                                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                                                        Detail
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            @php
+                                                $processedOrderIds[] = $history->order_id;
+                                            @endphp
+                                        @endif
                                     @endforeach
+                                </tbody>
                             </table>
                         </div>
                         <div class="mt-5">
                                 <h3>Pesanan Diproses</h3>
-                                <table class="table">
+                                <table class="table text-center">
                                     <thead>
                                         <tr>
                                             <th>No. Pesanan</th>
@@ -107,12 +124,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($transactionHistories->where('statuspembayaran', '==', 'Diproses') as $history)
+                                        @foreach ($transactionHistories->where('statuspembayaran', '==', 'Sedang diproses') as $history)
                                         <tr>
                                             <td>{{ $history->order_id }}</td>
                                             <td>{{ $history->created_at->format('D, d M Y') }}</td>
                                             <td>{{$history->statuspembayaran }}</td>
-                                            <td><button class = "btn btn-primary btn-lg" data-toggle = "modal" data-target = "#myModal">
+                                            <td><button class = "btn btn-primary btn-sm" data-toggle = "modal" data-target = "#myModal">
                                             Detail
                                             </button>
                                         </tr>
