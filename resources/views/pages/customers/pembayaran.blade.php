@@ -99,6 +99,7 @@
                                         @csrf
                                         <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                                         <input type="hidden" name="balance" value="{{ $selectedValue }}">
+                                        <input type="hidden" name="metode" value="tambah">
                                         <button type="submit" class="btn btn-primary">Lanjutkan Pembayaran</button>
                                     </form>
                                 </div>
