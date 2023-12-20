@@ -101,7 +101,6 @@
                                         <input type="hidden" name="balance" value="{{ $selectedValue }}">
                                         <button type="submit" class="btn btn-primary">Lanjutkan Pembayaran</button>
                                     </form>
-                                    {{-- <a href="{{ url('/berhasil') }}" type="button" class="btn btn-primary">Lanjutkan Pembayaran</a> --}}
                                 </div>
                             </div>
                         </div>
