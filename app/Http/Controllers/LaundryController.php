@@ -145,22 +145,6 @@ class LaundryController extends Controller
         ]);
     }
 
-    public function confirm($laundry_id, $package_id, $order_id) {
-        $decryptedLaundryId = decrypt($laundry_id);
-        $decryptedPackageId = decrypt($package_id);
-        $decryptedOrderId = decrypt($order_id);
-
-        $selectedLaundry = Laundry::find($decryptedLaundryId);
-        $selectedPackage = Package::find($decryptedPackageId);
-        $laundryOrder = LaundryOrder::find($decryptedOrderId);
-
-        $totalWeight = $laundryOrder->selectedLaundryItems->sum('quantity');
-        $totalWeight = $this->calculateTotalWeight($laundryOrder->selectedLaundryItems);
-        $totalCost = $selectedPackage->price * $totalWeight;
-
-        return view('pages.customers.order.confirm', compact('selectedLaundry', 'selectedPackage', 'laundryOrder', 'totalWeight', 'totalCost'));
-    }
-
     private function calculateTotalWeight($selectedItems)
     {
         $itemWeights = [
@@ -208,4 +192,28 @@ class LaundryController extends Controller
 
         return redirect()->route('payment', ['id' => $encryptedOrderId]);
     }
+    public function confirm($laundry_id, $package_id, $order_id) {
+        $decryptedLaundryId = decrypt($laundry_id);
+        $decryptedPackageId = decrypt($package_id);
+        $decryptedOrderId = decrypt($order_id);
+
+        $selectedLaundry = Laundry::find($decryptedLaundryId);
+        $selectedPackage = Package::find($decryptedPackageId);
+        $laundryOrder = LaundryOrder::find($decryptedOrderId);
+
+        $totalWeight = $laundryOrder->selectedLaundryItems->sum('quantity');
+        $totalWeight = $this->calculateTotalWeight($laundryOrder->selectedLaundryItems);
+        $totalCost = $selectedPackage->price * $totalWeight;
+
+        return view('pages.customers.order.confirm', compact('selectedLaundry', 'selectedPackage', 'laundryOrder', 'totalWeight', 'totalCost'));
+    }
+
+    public function payment($id){
+        $decriptid = decrypt($id);
+        $payment = TransactionHistory::find($decriptid);
+        //dd($payment);
+        return view('pages.customers.order.payment', compact("payment"));
+    }
+
+    
 }

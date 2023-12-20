@@ -19,7 +19,7 @@
                 <b style="color: #0084F8; font-size: 25px;">Total Pembayaran</b>
             </div>
             <div class="container mt-4 text-center">
-                <b style="color: #000000; font-size: 25px;">100000</b>
+                <b style="color: #000000; font-size: 25px;">{{ $payment->price}}</b>
             </div>
             <br>
             <br>
