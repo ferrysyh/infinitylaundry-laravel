@@ -127,12 +127,13 @@ class BalanceController extends Controller
             $cari = User::find($idUser);
 
             if ($balanceAwal < $balance){
-                return redirect('/gagal');
+                return ('Saldo Tidak Mencukupi!');
             } else {
                 $balance = $balanceAwal - $balance;
                 $cari->balance = $balance;
                 $cari->save();
             }
+            return redirect('/berhasiltariksaldo_customers');
         }
 
         return redirect('/berhasil');

@@ -85,6 +85,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/tariksaldo_customers', [BalanceController::class, 'showFormCustomers'])->name('tariksaldo');
 
+    Route::post('/metodetariksaldo-proc', [BalanceController::class, 'update'])->name('metodetariksaldo-proc');
+
     Route::post('/metodetariksaldo_customers', [BalanceController::class, 'processNominalCustomers'])->name('metodetariksaldo');
 
     Route::get('/berhasiltariksaldo_customers', function () {
