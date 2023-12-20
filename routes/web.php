@@ -42,6 +42,8 @@ Route::get('/topup', [BalanceController::class, 'showForm'])->name('topup');
 
 Route::post('/pembayaran', [BalanceController::class, 'processNominal'])->name('pembayaran');
 
+Route::post('/pembayaran-proc', [BalanceController::class, 'update'])->name('pembayaran-proc');
+
 Route::get('/berhasil', function () {
     return view('pages.customers.berhasil');
 });

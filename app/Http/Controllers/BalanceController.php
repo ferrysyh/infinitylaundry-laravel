@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Balance;
+use App\Models\User;
 
 class BalanceController extends Controller
 {
@@ -24,14 +25,14 @@ class BalanceController extends Controller
     {
         $selectedNominal = $request->input('options-base');
         $nominals = [
-            10000 => 'Rp10.000',
-            20000 => 'Rp20.000',
-            50000 => 'Rp50.000',
-            100000 => 'Rp100.000',
-            150000 => 'Rp150.000',
-            200000 => 'Rp200.000',
-            500000 => 'Rp500.000',
-            1000000 => 'Rp1.000.000',
+            10000 => 10000,
+            20000 => 20000,
+            50000 => 50000,
+            100000 => 100000,
+            150000 => 150000,
+            200000 => 200000,
+            500000 => 500000,
+            1000000 => 1000000,
         ];
         
         
@@ -48,26 +49,34 @@ class BalanceController extends Controller
             return "Nominal tidak valid. Silakan pilih nominal yang valid.";
         }
         
-        if (array_key_exists($selectedBank, $bankname)) {
-            $selectedValue = $banks[$selectedBank];
-            return view('pages.customers.berhasil', ['selectedBank' => $selectedValue]);
-        } else {
-            return "Silakan pilih metode pembayaran yang valid.";
-        }
+        // if (array_key_exists($selectedBank, $bankname)) {
+        //     $selectedValue = $banks[$selectedBank];
+        //     return view('pages.customers.berhasil', ['selectedBank' => $selectedValue]);
+        // } else {
+        //     return "Silakan pilih metode pembayaran yang valid.";
+        // }
     }
 
     public function processNominalCustomers(Request $request)
     {
         $selectedNominalCustomers = $request->input('options-base');
         $nominals = [
-            10000 => 'Rp10.000',
-            20000 => 'Rp20.000',
-            50000 => 'Rp50.000',
-            100000 => 'Rp100.000',
-            150000 => 'Rp150.000',
-            200000 => 'Rp200.000',
-            500000 => 'Rp500.000',
-            1000000 => 'Rp1.000.000',
+            10000 => 10000,
+            20000 => 20000,
+            50000 => 50000,
+            100000 => 100000,
+            150000 => 150000,
+            200000 => 200000,
+            500000 => 500000,
+            1000000 => 1000000,
+            // 10000 => 'Rp10.000',
+            // 20000 => 'Rp20.000',
+            // 50000 => 'Rp50.000',
+            // 100000 => 'Rp100.000',
+            // 150000 => 'Rp150.000',
+            // 200000 => 'Rp200.000',
+            // 500000 => 'Rp500.000',
+            // 1000000 => 'Rp1.000.000',
         ];
 
         if (array_key_exists($selectedNominalCustomers, $nominals)) {
@@ -117,11 +126,14 @@ class BalanceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        $balance = Balance::find($id);
-        $balance->balance = $request->balance;
-        $balance->save();
+        $idUser = $request->id;
+        $balance = $request->balance;
+
+        $cari = User::find($idUser);
+        $cari->balance = $balance;
+        $cari->save();
         return redirect('/berhasil');
     }
 

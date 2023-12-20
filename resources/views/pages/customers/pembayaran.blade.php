@@ -94,9 +94,14 @@
                                     <label for="metode">Metode Pembayaran: </label>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger"
-                                        data-bs-dismiss="modal">Batal</button>
-                                    <a href="{{ url('/berhasil') }}" type="button" class="btn btn-primary">Lanjutkan Pembayaran</a>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                    <form action="{{ route('pembayaran-proc') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ auth()->user()->id }}">
+                                        <input type="hidden" name="balance" value="{{ $selectedValue }}">
+                                        <button type="submit" class="btn btn-primary">Lanjutkan Pembayaran</button>
+                                    </form>
+                                    {{-- <a href="{{ url('/berhasil') }}" type="button" class="btn btn-primary">Lanjutkan Pembayaran</a> --}}
                                 </div>
                             </div>
                         </div>
