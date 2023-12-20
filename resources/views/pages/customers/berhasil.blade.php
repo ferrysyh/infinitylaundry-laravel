@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('title', 'Dashboard')
+@section('title', 'Successful')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/customers.css') }}" />

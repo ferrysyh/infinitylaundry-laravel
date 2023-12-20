@@ -33,12 +33,26 @@ class BalanceController extends Controller
             500000 => 'Rp500.000',
             1000000 => 'Rp1.000.000',
         ];
+        
+        
+        $selectedBank = $request->input('btnradio');
 
+        // Logika untuk menentukan nama bank berdasarkan nilai yang dipilih
+        $bankName = ($selectedBank == 'bri') ? 'Bank BRI' : (($selectedBank == 'mandiri') ? 'Bank Mandiri' : 'Nama Bank Lainnya');
+        ['bankName' => $bankName];
+        
         if (array_key_exists($selectedNominal, $nominals)) {
             $selectedValue = $nominals[$selectedNominal];
             return view('pages.customers.pembayaran', ['selectedValue' => $selectedValue]);
         } else {
             return "Nominal tidak valid. Silakan pilih nominal yang valid.";
+        }
+        
+        if (array_key_exists($selectedBank, $bankname)) {
+            $selectedValue = $banks[$selectedBank];
+            return view('pages.customers.berhasil', ['selectedBank' => $selectedValue]);
+        } else {
+            return "Silakan pilih metode pembayaran yang valid.";
         }
     }
 
@@ -105,8 +119,13 @@ class BalanceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $balance = Balance::find($id);
+        $balance->balance = $request->balance;
+        $balance->save();
+        return redirect('/berhasil');
     }
+
+    
 
     /**
      * Remove the specified resource from storage.

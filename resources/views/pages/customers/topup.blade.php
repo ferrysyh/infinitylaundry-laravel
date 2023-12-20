@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('title', 'Dashboard')
+@section('title', 'Isi Saldo')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/customers.css') }}" />
@@ -139,7 +139,7 @@
                             <div class="col-md-8">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Nominal Lainnya</span>
-                                    <input type="text" placeholder="Rp0" name="nominalInput" class="form-control" aria-label="Sizing example input"
+                                    <input type="text" placeholder="Rp0" name="option-base" class="form-control" aria-label="Sizing example input"
                                     aria-describedby="inputGroup-sizing-default">
                                 </div>
                             </div>
