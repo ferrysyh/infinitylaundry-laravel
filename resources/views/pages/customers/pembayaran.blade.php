@@ -19,7 +19,7 @@
                 <b style="color: #0084F8; font-size: 25px;">Total Isi Saldo</b>
             </div>
             <div class="container mt-4 text-center">
-                <b style="color: #000000; font-size: 25px;">{{ $selectedValue }}</b>
+                <b style="color: #000000; font-size: 25px;">Rp{{ number_format($selectedValue, 0,',','.') }}</b>
             </div>
             <br>
             <br>
@@ -90,7 +90,7 @@
                                 <div class="modal-body">
                                     <label for="name">Nama: {{ auth()->user()->name }}</label><br>
                                     <label for="level">Level: {{ auth()->user()->level }}</label><br>
-                                    <label for="total">Total: {{ $selectedValue }}</label><br>
+                                    <label for="total">Total: Rp{{ number_format($selectedValue, 0,',','.') }}</label><br>
                                     <label for="metode">Metode Pembayaran: </label>
                                 </div>
                                 <div class="modal-footer">
