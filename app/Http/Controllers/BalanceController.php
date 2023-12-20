@@ -130,8 +130,10 @@ class BalanceController extends Controller
     {
         $idUser = $request->id;
         $balance = $request->balance;
-
+        $balanceAwal = User::find($idUser)->balance;
         $cari = User::find($idUser);
+
+        $balance = $balanceAwal + $balance;
         $cari->balance = $balance;
         $cari->save();
         return redirect('/berhasil');
