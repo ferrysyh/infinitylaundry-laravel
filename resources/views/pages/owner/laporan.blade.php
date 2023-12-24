@@ -18,23 +18,6 @@
                 <b style="color: #0084F8;font-size: 25px;">Laporan Pesanan</b>
                 <br>
                 <br>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>No. Pesanan</th>
-                            <th>Tanggal Pemesanan</th>
-                            <th>Laporan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1 Januari 2069</td>
-                                    <td>Gacor Kang Gacor Kang Gacor Kang Gacor Kang Gacor KangGacor KangGacor KangGacor KangGacor KangGacor Kang</td>
-                                </tr>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </main>
     </div>
