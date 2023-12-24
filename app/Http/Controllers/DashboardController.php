@@ -41,4 +41,18 @@ class DashboardController extends Controller
             return view('pages.customers.order.riwayat', ['transactionHistories' => $transactionHistories]);
         }
     }
+
+    public function laporan(){
+        $laundryid = auth()->user()->id;
+        $laporan = TransactionHistory::where('laundry_id', $laundryid)->get();
+        $laporan = TransactionHistory::with('LaundryOrder')
+        ->where('laundry_id', $laundryid)->get();
+
+        $role = auth()->user()->role;
+
+        if($role === 'owner'){
+            return view('pages.owner.laporan',['laporan' => $laporan]);
+        }
+
+    }
 }

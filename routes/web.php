@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\BalanceController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,8 +116,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::delete('/package/{id}', [PackageController::class, 'destroy']);
 
-    Route::get('/laporan', function () {
-        return view('pages.owner.laporan');
-    });
+    Route::get('/laporan', [DashboardController::class, 'laporan']);
+
+    //Route::post('/payment-proc', [LaundryController::class, 'ordered'])->name('payment-proc');
 
 });
