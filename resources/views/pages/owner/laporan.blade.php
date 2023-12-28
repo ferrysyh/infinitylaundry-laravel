@@ -62,13 +62,13 @@
                     <tbody>
                         
                         @foreach ($laporan->where('statuspembayaran', '==', 'Menunggu pembayaran') as $history)
-                            <tr>
+                            <td>
                                 <div data-date = "{{ $history->created_at}}"></div>
                                 <div data-price= "{{$history->price}}"></div>
                                 <td><div id="tahun" ></div></td>
                                 <td><div id="bulan"></div></td>
                                 <td><div id="price"></div></td>
-                        </tr>
+                        </td>
                         @endforeach
                     </tbody>
                 </table>
