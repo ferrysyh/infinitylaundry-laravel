@@ -73,7 +73,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Total Berat dan Bayar</h4><br>
                                     <p class="card-text">Total Berat: {{ $totalWeight }} kg</p>
-                                    <p class="card-text">Total Bayar: Rp {{ number_format($totalCost, 2, ',', '.') }}</p>
+                                    <span id="updatedTotalBayar"><p class="card-text">Total Bayar: Rp {{ number_format($totalCost, 2, ',', '.') }}</p></span>
                                 </div>
                             </div>
                         </div>
@@ -88,8 +88,22 @@
                                 <input type="hidden" name="package_id" value="{{ $selectedPackage->id }}">
                                 <input type="hidden" name="order_id" value="{{ $laundryOrder->id }}">
                                 <input type="hidden" name="price" value="{{ $totalCost }}">
-                            
-                                <button type="submit" class="btn btn-primary" style="width: 100%;">Konfirmasi</button>
+                    
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="mb-2">Poin anda: {{ Auth()->User()->poin }}</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="inputGroup-sizing-default">Tukarkan Poin</span>
+                                                <input type="number" placeholder="0" id="points" name="points" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" oninput="updateTotal()">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <button type="submit" class="btn btn-primary mt-4" style="width: 100%;">Konfirmasi</button>
                             </form>
                         </div>
                     </div>
@@ -97,4 +111,21 @@
             </main>
         </div>
     </div>
+
+    <script>
+        function updateTotal() {
+            var poinValue = document.getElementById('points').value;
+            var userPoin = {{ Auth()->User()->poin }};
+            var totalCost = parseFloat({{ $totalCost }});
+        
+            if (poinValue > userPoin) {
+                document.getElementById('points').value = userPoin;
+                poinValue = userPoin;
+            }
+    
+            var updatedTotal = totalCost - poinValue;
+        
+            document.getElementById('updatedTotalBayar').innerHTML = 'Total Bayar: Rp ' + updatedTotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        }
+    </script>
 @endsection

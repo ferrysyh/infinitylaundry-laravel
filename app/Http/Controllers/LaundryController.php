@@ -180,19 +180,25 @@ class LaundryController extends Controller
         $packageId = $request->input('package_id');
         $orderId = $request->input('order_id');
         $price = $request->input('price');
-
+        $points = $request->input('points');
+        $finalPrice = $price - $points;
         TransactionHistory::create([
             'user_id' => $userId,
             'laundry_id' => $laundryId,
             'package_id' => $packageId,
             'order_id' => $orderId,
-            'price' => $price,
+            'price' => $finalPrice,
         ]);
+
+        $user = User::find($userId);
+        $user->poin -= $points;
+        $user->save();
 
         $encryptedOrderId = encrypt($orderId);
 
         return redirect()->route('payment', ['id' => $encryptedOrderId]);
     }
+
     public function confirm($laundry_id, $package_id, $order_id) {
         $decryptedLaundryId = decrypt($laundry_id);
         $decryptedPackageId = decrypt($package_id);
@@ -228,6 +234,7 @@ class LaundryController extends Controller
             $balance = $balanceAwal - $price;
             $transaction->statuspembayaran = 'Sedang diproses';
             $user->balance = $balance;
+            $user->poin += 10;
             $user->save();
             $transaction->save();
             return redirect('/dashboard');
