@@ -235,6 +235,7 @@ class LaundryController extends Controller
             $transaction->statuspembayaran = 'Sedang diproses';
             $user->balance = $balance;
             $user->poin += 10;
+            $user->levelPoin += 1;
             $user->save();
             $transaction->save();
             return redirect('/dashboard');

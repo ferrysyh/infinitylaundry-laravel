@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Laundry;
 use App\Models\Package;
 use App\Models\TransactionHistory;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -17,10 +18,38 @@ class DashboardController extends Controller
         if ($role === 'customer') {
             $transactionHistories = TransactionHistory::where('user_id', $userId)->get();
             $transactionHistories = TransactionHistory::with('LaundryOrder')->where('user_id', $userId)->get();
+            $user = User::find($userId);            
+            if ($user->levelPoin < 100) {
+                $user->level = 'Bronze';
+                $user->save();
+            } elseif ($user->levelPoin >= 100) {
+                $user->level = 'Silver';
+                $user->save();
+            } elseif ($user->levelPoin >= 200) {
+                $user->level = 'Gold';
+                $user->save();
+            } elseif ($user->levelPoin >= 300) {
+                $user->level = 'Platinum';
+                $user->save();
+            }
             return view('pages.customers.dashboard', ['transactionHistories' => $transactionHistories]);
         } elseif ($role === 'owner') {
             $transactionHistories = TransactionHistory::where('user_id', $userId)->get();
             $transactionHistories = TransactionHistory::with('LaundryOrder')->where('laundry_id', $userId)->get();
+            $user = User::find($userId);            
+            if ($user->levelPoin < 100) {
+                $user->level = 'Bronze';
+                $user->save();
+            } elseif ($user->levelPoin >= 100) {
+                $user->level = 'Silver';
+                $user->save();
+            } elseif ($user->levelPoin >= 200) {
+                $user->level = 'Gold';
+                $user->save();
+            } elseif ($user->levelPoin >= 300) {
+                $user->level = 'Platinum';
+                $user->save();
+            }
             return view('pages.owner.dashboard', ['transactionHistories' => $transactionHistories]);
         } elseif ($role === 'admin') {
             $laundry = Laundry::get();

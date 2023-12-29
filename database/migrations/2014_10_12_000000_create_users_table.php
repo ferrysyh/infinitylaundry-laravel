@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('role');
             $table->integer('balance')->default(0);
-            $table->string('level')->default('Silver');
+            $table->string('level')->default('Bronze');
+            $table->integer('levelPoin')->default(0);
             $table->integer('poin')->default(0);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

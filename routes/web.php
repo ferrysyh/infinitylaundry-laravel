@@ -117,7 +117,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/package/{id}', [PackageController::class, 'destroy']);
 
     Route::get('/laporan', [DashboardController::class, 'laporan']);
-
-    //Route::post('/payment-proc', [LaundryController::class, 'ordered'])->name('payment-proc');
-
 });
