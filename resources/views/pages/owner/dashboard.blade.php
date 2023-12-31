@@ -81,6 +81,7 @@
                                         <th>Tanggal Pemesanan</th>
                                         <th>Status</th>
                                         <th>Nominal</th>
+                                        <th>Paket</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -102,16 +103,15 @@
                                                 <td>{{ $history->created_at->format('D, d M Y') }}</td>
                                                 <td>{{ $history->statuspembayaran }}</td>
                                                 <td>Rp {{ number_format($history->price, 2, ',', '.') }}</td>
+                                                <td>{{ $history->package->name }}</td>
                                                 <td>
-                                                    <form action="/change-status" method="post">
+                                                    <form action="/change-status" method="post" style="display: inline-block;">
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{ $history->order_id }}">
                                                         <input type="hidden" name="status" value="Sedang diproses">
                                                         <button type="submit" class="btn btn-sm btn-primary">Terima</button>
                                                     </form>
-                                                </td>
-                                                <td>
-                                                    <form action="/change-status" method="post">
+                                                    <form action="/change-status" method="post" style="display: inline-block;">
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{ $history->order_id }}">
                                                         <input type="hidden" name="status" value="Ditolak">
@@ -136,6 +136,7 @@
                                             <th>Tanggal Pemesanan</th>
                                             <th>Status</th>
                                             <th>Nominal</th>
+                                            <th>Paket</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -146,6 +147,7 @@
                                             <td>{{ $history->created_at->format('D, d M Y') }}</td>
                                             <td>{{$history->statuspembayaran }}</td>
                                             <td>Rp {{ number_format($history->price, 2, ',', '.') }}</td>
+                                            <td>{{ $history->package->name }}</td>
                                             <td>
                                                 <form action="/change-status" method="post">
                                                     @csrf

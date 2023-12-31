@@ -89,7 +89,6 @@ class DashboardController extends Controller
         $orderId = $request->input('id');
         $status = $request->input('status');
         $transactionHistory = TransactionHistory::find($orderId);
-        // dd($orderId, $status, $transactionHistory);
         $transactionHistory->statuspembayaran = $status;
         $laundry = User::find($transactionHistory->laundry_id);
         $laundry->balance += $transactionHistory->price;

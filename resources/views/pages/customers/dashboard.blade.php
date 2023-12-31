@@ -72,6 +72,7 @@
                                 <th>Tanggal Pemesanan</th>
                                 <th>Status</th>
                                 <th>Nominal</th>
+                                <th>Paket</th>
                                 <th>Tempat</th>
                                 <th></th>
                             </tr>
@@ -81,7 +82,7 @@
                                 $processedOrderIds = [];
                             @endphp
                     
-                            @foreach ($transactionHistories->where('statuspembayaran', '!=', 'Selesai') as $history)
+                            @foreach ($transactionHistories->where('statuspembayaran', '!=', 'Selesai')->where('statuspembayaran', '!=', 'Ditolak') as $history)                
                                 @php
                                     $currentTime = now();
                                     $createdAt = $history->created_at;
@@ -94,6 +95,7 @@
                                         <td>{{ $history->created_at->format('D, d M Y') }}</td>
                                         <td>{{ $history->statuspembayaran }}</td>
                                         <td>Rp {{ number_format($history->price, 2, ',', '.') }}</td>
+                                        <td>{{ $history->package->name }}</td>
                                         <td>{{ $history->laundry->name }}</td>
                                         <td>
                                             @if ($history->statuspembayaran == 'Menunggu pembayaran')

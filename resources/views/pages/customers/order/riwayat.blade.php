@@ -22,16 +22,18 @@
                             <th>Tanggal Pemesanan</th>
                             <th>Status</th>
                             <th>Nominal</th>
+                            <th>Paket</th>
                             <th>Tempat</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($transactionHistories->where('statuspembayaran', '==', 'Selesai') as $history)
+                            @foreach ($transactionHistories->whereIn('statuspembayaran', ['Selesai', 'Ditolak']) as $history)
                                 <tr>
                                     <td>{{ $history->order_id }}</td>
                                     <td>{{ $history->created_at->format('D, d M Y') }}</td>
                                     <td>{{ $history->statuspembayaran }}</td>
                                     <td>Rp {{ number_format($history->price, 2, ',', '.') }}</td>
+                                    <td>{{ $history->package->name }}</td>
                                     <td>{{ $history->laundry->name }}</td>
                                 </tr>
                             @endforeach
