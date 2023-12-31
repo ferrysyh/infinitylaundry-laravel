@@ -36,6 +36,7 @@ class DashboardController extends Controller
         } elseif ($role === 'owner') {
             $transactionHistories = TransactionHistory::where('user_id', $userId)->get();
             $transactionHistories = TransactionHistory::with('LaundryOrder')->where('laundry_id', $userId)->get();
+            $laundry = Laundry::find($userId);
             $user = User::find($userId);            
             if ($user->levelPoin < 100) {
                 $user->level = 'Bronze';
@@ -50,7 +51,7 @@ class DashboardController extends Controller
                 $user->level = 'Platinum';
                 $user->save();
             }
-            return view('pages.owner.dashboard', ['transactionHistories' => $transactionHistories]);
+            return view('pages.owner.dashboard', ['transactionHistories' => $transactionHistories, 'laundry' => $laundry]);
         } elseif ($role === 'admin') {
             $laundry = Laundry::get();
             $package = Package::get();

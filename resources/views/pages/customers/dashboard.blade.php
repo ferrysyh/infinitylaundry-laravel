@@ -65,7 +65,7 @@
                 
                 <div class="mt-5">
                     <h3>Pemesanan Berjalan</h3>
-                    <table class="table text-center">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>No. Pesanan</th>
@@ -73,6 +73,7 @@
                                 <th>Status</th>
                                 <th>Nominal</th>
                                 <th>Tempat</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>

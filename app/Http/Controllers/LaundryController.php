@@ -232,7 +232,7 @@ class LaundryController extends Controller
             return redirect('/dashboard')->with('msg', 'Saldo tidak cukup');
         } else {
             $balance = $balanceAwal - $price;
-            $transaction->statuspembayaran = 'Sedang diproses';
+            $transaction->statuspembayaran = 'Dibayar';
             $user->balance = $balance;
             $user->poin += 10;
             $user->levelPoin += 1;
