@@ -103,8 +103,20 @@
                                                 <td>{{ $history->statuspembayaran }}</td>
                                                 <td>Rp {{ number_format($history->price, 2, ',', '.') }}</td>
                                                 <td>
-                                                    <a href="" class="btn btn-sm btn-primary">Terima</a>
-                                                    <a href="" class="btn btn-sm btn-danger">Tolak</a>
+                                                    <form action="/change-status" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{ $history->order_id }}">
+                                                        <input type="hidden" name="status" value="Sedang diproses">
+                                                        <button type="submit" class="btn btn-sm btn-primary">Terima</button>
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    <form action="/change-status" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{ $history->order_id }}">
+                                                        <input type="hidden" name="status" value="Ditolak">
+                                                        <button type="submit" class="btn btn-sm btn-danger">Tolak</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                             @php
@@ -135,54 +147,21 @@
                                             <td>{{$history->statuspembayaran }}</td>
                                             <td>Rp {{ number_format($history->price, 2, ',', '.') }}</td>
                                             <td>
-                                                <a href="" class="btn btn-sm btn-primary">Selesai</a>
+                                                <form action="/change-status" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $history->order_id }}">
+                                                    <input type="hidden" name="status" value="Selesai">
+                                                    <button type="submit" class="btn btn-sm btn-primary">Selesai</button>
+                                                </form>
                                             </td>
-                                        </tr>
-                                        
+                                        </tr>  
                                         @endforeach
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-            <!-- Modal -->
-<div class = "modal fade" id = "myModal" tabindex = "-1" role = "dialog" 
-   aria-labelledby = "myModalLabel" aria-hidden = "true">
-   
-   <div class = "modal-dialog">
-      <div class = "modal-content">
-         
-         <div class = "modal-header">
-            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
-                  &times;
-            </button>
-            
-            <h4 class = "modal-title" id = "myModalLabel">
-               Detail pesanan
-            </h4>
-         </div>
-         
-         <div class = "modal-body">
-         <tr>
-                <th>No. Pesanan : {{ $history->order_id }}</th><br>
-                <th>Tanggal Pemesanan : {{ $history->created_at->format('D, d M Y') }}</th><br>
-                <th>Status : {{$history->statuspembayaran }}</th><br>
-                <th>Biaya : Rp {{ number_format($history->price, 2, ',', '.') }}</th>
-                <th></th>
-        </tr>
-         </div>
-         
-         <div class = "modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success" id="acceptBtn">Accept</button>
-                <button type="button" class="btn btn-danger" id="declineBtn">Decline</button>
-        </div>
-        </div>
-         
-      </div>
-    </div>
-  
-    </div>
+            </div>
         </main>
     </div>
 </div>

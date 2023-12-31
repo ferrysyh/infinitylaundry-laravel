@@ -83,6 +83,18 @@ class DashboardController extends Controller
         if($role === 'owner'){
             return view('pages.owner.laporan',['laporan' => $laporan]);
         }
+    }
 
+    public function status(Request $request){
+        $orderId = $request->input('id');
+        $status = $request->input('status');
+        $transactionHistory = TransactionHistory::find($orderId);
+        // dd($orderId, $status, $transactionHistory);
+        $transactionHistory->statuspembayaran = $status;
+        $laundry = User::find($transactionHistory->laundry_id);
+        $laundry->balance += $transactionHistory->price;
+        $laundry->save();
+        $transactionHistory->save();
+        return redirect('/dashboard');
     }
 }

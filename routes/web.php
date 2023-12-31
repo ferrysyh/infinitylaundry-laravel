@@ -117,4 +117,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/package/{id}', [PackageController::class, 'destroy']);
 
     Route::get('/laporan', [DashboardController::class, 'laporan']);
+
+    Route::post('/change-status', [DashboardController::class, 'status']);
 });
