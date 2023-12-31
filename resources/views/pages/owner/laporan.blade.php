@@ -60,8 +60,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
-                        @foreach ($laporan->where('statuspembayaran', '==', 'Menunggu pembayaran') as $history)
+                        @foreach ($laporan->where('statuspembayaran', '==', 'Selesai') as $history)
                             <td>
                                 <div data-date = "{{ $history->created_at}}"></div>
                                 <div data-price= "{{$history->price}}"></div>
