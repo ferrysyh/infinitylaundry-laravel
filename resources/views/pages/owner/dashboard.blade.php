@@ -4,6 +4,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/customers.css') }}" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @endsection
 
 @section('content')
@@ -44,29 +45,31 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="card" style="height: 220%;">
+                        <div class="card" style="height: 100%;">
                             <div class="card-body">
-                                <h6 class="card-title">Customer Bulan Ini</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card" style="height: 220%;">
-                            <div class="card-body">
-                                <h6 class="card-title">Penghasilan Bulan Ini</h6>
+                                <a href="{{ url('/tariksaldo_customers') }}" class="btn btn-white" style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                    <img src="{{ asset('img/tarikSaldo.png') }}" alt="Tarik Saldo" style="max-width: 30px; max-height: 50px;">
+                                    <span style="white-space: nowrap;">Tarik Penghasilan</span>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="row mt-4">
-                    <div class="col-md-2">
+                    <div class="col-md-6">
                         <div class="card" style="height: 100%;">
                             <div class="card-body">
-                                <a href="#" class="btn btn-white" style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                    <img src="{{ asset('img/tarikSaldo.png') }}" alt="Tarik Saldo" style="max-width: 30px; max-height: 50px;">
-                                    <span style="white-space: nowrap;">Tarik Saldo</span>
-                                </a>
+                                <h5 class="card-title">Statistik Orderan</h5><br>
+                                <canvas id="customerCountChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card" style="height: 100%;">
+                            <div class="card-body">
+                                <h5 class="card-title">Statistik Penghasilan</h5><br>
+                                <canvas id="totalEarningsChart" width="400" height="200"></canvas>
                             </div>
                         </div>
                     </div>
@@ -167,6 +170,53 @@
         </main>
     </div>
 </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    var months = ['Bulan Lalu', 'Bulan Kemarin', 'Bulan Ini'];
+    var customerCounts = [{{ $customerCountLastLast }}, {{ $customerCountLast }}, {{ $customerCountCurrent }}];
+    var totalEarnings = [{{ $totalEarningsLastLast }}, {{ $totalEarningsLast }}, {{ $totalEarningsCurrent}}];
+
+    var ctxCustomerCount = document.getElementById('customerCountChart').getContext('2d');
+    var customerCountChart = new Chart(ctxCustomerCount, {
+        type: 'bar',
+        data: {
+            labels: months,
+            datasets: [{
+                label: 'Order Count',
+                data: customerCounts,
+                backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var ctxTotalEarnings = document.getElementById('totalEarningsChart').getContext('2d');
+    var totalEarningsChart = new Chart(ctxTotalEarnings, {
+        type: 'bar',
+        data: {
+            labels: months,
+            datasets: [{
+                label: 'Total Earnings',
+                data: totalEarnings,
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 @endsection

@@ -7,6 +7,7 @@ use App\Models\Package;
 use App\Models\TransactionHistory;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class DashboardController extends Controller
 {
@@ -36,6 +37,31 @@ class DashboardController extends Controller
         } elseif ($role === 'owner') {
             $transactionHistories = TransactionHistory::where('user_id', $userId)->get();
             $transactionHistories = TransactionHistory::with('LaundryOrder')->where('laundry_id', $userId)->get();
+
+            $currentMonth = Carbon::now()->month;
+            $lastMonth = Carbon::now()->subMonth()->month;
+            $lastLastMonth = Carbon::now()->subMonths(2)->month;
+
+            $customerCountCurrent = TransactionHistory::whereMonth('created_at', $currentMonth)
+                ->where('statuspembayaran', 'Selesai')
+                ->count();
+            $customerCountLast = TransactionHistory::whereMonth('created_at', $lastMonth)
+                ->where('statuspembayaran', 'Selesai')
+                ->count();
+            $customerCountLastLast = TransactionHistory::whereMonth('created_at', $lastLastMonth)
+                ->where('statuspembayaran', 'Selesai')
+                ->count();
+            
+            $totalEarningsCurrent = TransactionHistory::whereMonth('created_at', $currentMonth)
+                ->where('statuspembayaran', 'Selesai')
+                ->sum('price');
+            $totalEarningsLast = TransactionHistory::whereMonth('created_at', $lastMonth)
+                ->where('statuspembayaran', 'Selesai')
+                ->sum('price');
+            $totalEarningsLastLast = TransactionHistory::whereMonth('created_at', $lastLastMonth)
+                ->where('statuspembayaran', 'Selesai')
+                ->sum('price');
+
             $laundry = Laundry::find($userId);
             $user = User::find($userId);            
             if ($user->levelPoin < 100) {
@@ -51,7 +77,7 @@ class DashboardController extends Controller
                 $user->level = 'Platinum';
                 $user->save();
             }
-            return view('pages.owner.dashboard', ['transactionHistories' => $transactionHistories, 'laundry' => $laundry]);
+            return view('pages.owner.dashboard', ['transactionHistories' => $transactionHistories, 'laundry' => $laundry, 'customerCountCurrent' => $customerCountCurrent, 'customerCountLast' => $customerCountLast, 'customerCountLastLast' => $customerCountLastLast, 'totalEarningsCurrent' => $totalEarningsCurrent, 'totalEarningsLast' => $totalEarningsLast, 'totalEarningsLastLast' => $totalEarningsLastLast]);
         } elseif ($role === 'admin') {
             $laundry = Laundry::get();
             $package = Package::get();
