@@ -100,14 +100,19 @@ class DashboardController extends Controller
 
     public function laporan(){
         $laundryid = auth()->user()->id;
-        $laporan = TransactionHistory::where('laundry_id', $laundryid)->get();
+        
         $laporan = TransactionHistory::with('LaundryOrder')
-        ->where('laundry_id', $laundryid)->get();
+            ->where('laundry_id', $laundryid)
+            ->get();
+
+        $ordersByMonth = $laporan->where('statuspembayaran', 'Selesai')->groupBy(function ($item) {
+            return Carbon::parse($item->created_at)->format('Y-m');
+        });
 
         $role = auth()->user()->role;
 
-        if($role === 'owner'){
-            return view('pages.owner.laporan',['laporan' => $laporan]);
+        if ($role === 'owner') {
+            return view('pages.owner.laporan', ['ordersByMonth' => $ordersByMonth]);
         }
     }
 
