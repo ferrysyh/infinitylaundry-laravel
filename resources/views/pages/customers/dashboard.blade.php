@@ -65,7 +65,7 @@
                 
                 <div class="mt-5">
                     <h3>Pemesanan Berjalan</h3>
-                    <table class="table">
+                    <table class="table text-center">
                         <thead>
                             <tr>
                                 <th>No. Pesanan</th>
@@ -82,7 +82,7 @@
                                 $processedOrderIds = [];
                             @endphp
                     
-                            @foreach ($transactionHistories->where('statuspembayaran', '!=', 'Selesai')->where('statuspembayaran', '!=', 'Ditolak') as $history)                
+                            @forelse ($transactionHistories->where('statuspembayaran', '!=', 'Selesai')->where('statuspembayaran', '!=', 'Ditolak') as $history)                
                                 @php
                                     $currentTime = now();
                                     $createdAt = $history->created_at;
@@ -107,7 +107,11 @@
                                         $processedOrderIds[] = $history->order_id;
                                     @endphp
                                 @endif
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="6">Tidak ada pesanan yang sedang berjalan.</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>                    
                 </div>

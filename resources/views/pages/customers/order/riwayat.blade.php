@@ -27,7 +27,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                            @foreach ($transactionHistories->whereIn('statuspembayaran', ['Selesai', 'Ditolak']) as $history)
+                            @forelse ($transactionHistories->whereIn('statuspembayaran', ['Selesai', 'Ditolak']) as $history)
                                 <tr>
                                     <td>{{ $history->order_id }}</td>
                                     <td>{{ $history->created_at->format('D, d M Y') }}</td>
@@ -36,7 +36,11 @@
                                     <td>{{ $history->package->name }}</td>
                                     <td>{{ $history->laundry->name }}</td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="6">Anda belum memiliki riwayat pesanan.</td>
+                                </tr>
+                            @endforelse
                         </tr>
                     </tbody>
                 </table>

@@ -93,7 +93,7 @@
                                         $processedOrderIds = [];
                                     @endphp
                                 
-                                    @foreach ($transactionHistories->where('statuspembayaran', '==', 'Dibayar') as $history)
+                                    @forelse ($transactionHistories->where('statuspembayaran', '==', 'Dibayar') as $history)
                                         @php
                                             $currentTime = now();
                                             $createdAt = $history->created_at;
@@ -126,29 +126,33 @@
                                                 $processedOrderIds[] = $history->order_id;
                                             @endphp
                                         @endif
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="6">Tidak ada pesanan masuk.</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
                         <div class="mt-5">
-                                <h3>Pesanan Diproses</h3>
-                                <table class="table text-center">
-                                    <thead>
-                                        <tr>
-                                            <th>No. Pesanan</th>
-                                            <th>Tanggal Pemesanan</th>
-                                            <th>Status</th>
-                                            <th>Nominal</th>
-                                            <th>Paket</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($transactionHistories->where('statuspembayaran', '==', 'Sedang diproses') as $history)
+                            <h3>Pesanan Diproses</h3>
+                            <table class="table text-center">
+                                <thead>
+                                    <tr>
+                                        <th>No. Pesanan</th>
+                                        <th>Tanggal Pemesanan</th>
+                                        <th>Status</th>
+                                        <th>Nominal</th>
+                                        <th>Paket</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($transactionHistories->where('statuspembayaran', '==', 'Sedang diproses') as $history)
                                         <tr>
                                             <td>{{ $history->order_id }}</td>
                                             <td>{{ $history->created_at->format('D, d M Y') }}</td>
-                                            <td>{{$history->statuspembayaran }}</td>
+                                            <td>{{ $history->statuspembayaran }}</td>
                                             <td>Rp {{ number_format($history->price, 2, ',', '.') }}</td>
                                             <td>{{ $history->package->name }}</td>
                                             <td>
@@ -160,10 +164,14 @@
                                                 </form>
                                             </td>
                                         </tr>  
-                                        @endforeach
-                                </table>
-                            </div>
-                        </div>
+                                    @empty
+                                        <tr>
+                                            <td colspan="6">Tidak ada pesanan yang sedang diproses.</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>                        
                     </div>
                 </div>
             </div>
