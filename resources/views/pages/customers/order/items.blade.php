@@ -156,8 +156,7 @@
                     alert("Mohon isikan nama item");
                     return;
                 } else if (!itemQuantity) {
-                    alert("Mohon isikan jumlah item");
-                    return;
+                    itemQuantity = 1;
                 } else if (itemQuantity <= 0) {
                     alert("Jumlah item tidak valid");
                     return;
@@ -170,8 +169,12 @@
                     existingItem.find("span").text(itemName + " : " + newQuantity);
                 } else {
                     var itemHTML = "<li class='mb-1 list-group-item d-flex justify-content-between align-items-center'>" +
-                        "<span>" + itemName + " : " + itemQuantity + "</span>" +
+                        "<span class='mr-auto'>" + itemName + " : " + itemQuantity + "</span>" +
+                        "<div class='btn-group'>" +
+                        "<button class='btn btn-sm btn-primary btn-increase-quantity' style='margin-right: 5px;'>+</button>" +
+                        "<button class='btn btn-sm btn-warning btn-decrease-quantity' style='margin-right: 5px;'>-</button>" +
                         "<button class='btn btn-sm btn-danger btn-remove-item'>Hapus</button>" +
+                        "</div>" +
                         "</li>";
                     $(".selected-items").append(itemHTML);
                 }
@@ -179,6 +182,24 @@
 
             $(document).on("click", ".btn-remove-item", function () {
                 $(this).closest("li").remove();
+            });
+
+            $(document).on("click", ".btn-increase-quantity", function (event) {
+                event.preventDefault();
+
+                var itemElement = $(this).closest("li");
+                var currentQuantity = parseInt(itemElement.find("span").text().split(":")[1].trim());
+                itemElement.find("span").text(itemElement.find("span").text().split(":")[0].trim() + " : " + (currentQuantity + 1));
+            });
+
+            $(document).on("click", ".btn-decrease-quantity", function (event) {
+                event.preventDefault();
+
+                var itemElement = $(this).closest("li");
+                var currentQuantity = parseInt(itemElement.find("span").text().split(":")[1].trim());
+                if (currentQuantity > 1) {
+                    itemElement.find("span").text(itemElement.find("span").text().split(":")[0].trim() + " : " + (currentQuantity - 1));
+                }
             });
 
             $(".btn-submit").click(function () {
