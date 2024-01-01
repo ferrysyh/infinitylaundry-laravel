@@ -191,7 +191,13 @@
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                        precision: 0,
+                        callback: function(value) {
+                            return value.toFixed(0);
+                        }
+                    }
                 }
             }
         }
